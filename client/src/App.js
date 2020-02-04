@@ -11,17 +11,17 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            firstname: '',
-            lastname: '',
+            studentname: '',
+            phonenumber: '',
         };
         this.handleChange = this.handleChange.bind(this);
-
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
+    /*
     mySubmitHandler = (event) => {
         event.preventDefault();
-        alert("You are submitting " + this.state.firstname);
+        alert("You are submitting " + this.state.studentname);
     }
     myChangeHandler = (event) => {
         //this.setState({username: event.target.value});
@@ -29,19 +29,49 @@ class App extends Component {
         let val = event.target.value;
         this.setState({[nam]: val});
     }
-    axiosGetData = () => { //Not working
-        axios({
-            url: "https://localhost:5000/test",
-            method: 'post',
-            headers: { "Content-Type": "application/json" }
-        }).then(res => {
-                console.log(`Axios Call completed: ${res}`)
+
+    */
+    axiosGetData = (event) => {
+        axios.get('http://localhost:5000/watch',{
+
+        })
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
             });
 
     }
+    axiosPostData = (event) => {
+        axios.post('http://localhost:5000/test', {
+            studentname: this.state.studentname,
+            phonenumber: this.state.phonenumber
+        })
+            .then(function (response) {
+                console.log(response);
+                alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
+    }
+    //used to insert multiple data as json object maybe
+    axiosPostManyData = (event) => { //Not working
+        axios.post('http://localhost:5000/insertmany', {
+            studentname: this.state.studentname,
+            phonenumber: this.state.phonenumber
+        })
+            .then(function (response) {
+                console.log(response);
+                alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
-
+    }
     handleChange (event) {
 
         this.setState({[event.target.name]:event.target.value});
@@ -49,8 +79,8 @@ class App extends Component {
 
 
     handleSubmit(event) {
-        event.preventDefault();
-        alert('A name was submitted: ' + this.state.firstname+ 'age is'+this.state.lastname);
+        // event.preventDefault();
+        // alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
 
     }
 
@@ -61,28 +91,32 @@ class App extends Component {
         return (
 
             <div className="App">
-                <form onSubmit={this.axiosGetData}>
-                    <label>Enter your name:</label>
+                <form onSubmit={this.axiosPostData}>
+                    <label>Enter your student name:</label>
                     <input
                         type='text'
-                        name='firstname'
-                        value={this.state.firstname}
-
+                        name='studentname'
+                        value={this.state.studentname}
                         onChange={this.handleChange}
-                        //onChange={this.myChangeHandler}
                     />
-                    <label>Enter your age:</label>
+                    <label>Enter your phone number:</label>
                     <input
                         type='text'
-                        name='lastname'
-                        value={this.state.lastname}
+                        name='phonenumber'
+                        value={this.state.phonenumber}
                         onChange={this.handleChange}
-                        //onChange={this.myChangeHandler}
                     />
                     <input type="submit" value="Submit" />
                 </form>
+                <form onSubmit={this.axiosPostManyData}>
+                    <input type="submit" value="submitMany" />
 
-                <h1>Create React Modal with 22 line of code </h1>
+                </form>
+                <form onSubmit={this.axiosGetData}>
+                    <input type="submit" value="getData" />
+
+                </form>
+                <h1>Click below to pop up </h1>
                 <Popup modal trigger={<button>Click Me</button>}>
                     {close => <Content close={close} />}
                 </Popup>

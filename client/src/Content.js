@@ -5,13 +5,12 @@ export default ({ close }) => (
         <a className="close" onClick={close}>
             &times;
         </a>
-        <div className="header"> Modal Title </div>
+        <div className="header"> Hi </div>
         <div className="content">
             {" "}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, a nostrum.
-            Dolorem
+            Have a nice day!
             <br />
-            Lorem ipsum
+            :)
         </div>
     </div>
 );
