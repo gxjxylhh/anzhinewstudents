@@ -20,7 +20,8 @@ var DATABASE_NAME = "example";
 const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority";
 const ObjectId = require("mongodb").ObjectID;
 
-
+const csvFilePath='models/usydfirstyear.csv';
+const csv=require('csvtojson');
 
 var app = express();
 
@@ -164,14 +165,31 @@ app.post("/test", (request, response) => {
 //multiple insert
 //will change to jsonObj that can load csv file later
 app.post('/insertmany',(request, response)=>{
-    collection.insertMany(request.body, function (err, result) {
-        if (error) {
-            return response.status(500).send(error);
-        }
-        console.log("Inserted 3 documents into the collection");
-        //console.log(result);
-        response.send(result.result);
-    });
+
+     csv()
+         .fromFile(csvFilePath)
+         //.then((jsonObj)=>{
+         .then((jsonObj)=>{
+             console.log(jsonObj);
+
+             // perform actions on the collection object
+             collection.insertMany(jsonObj, function (error, result) {
+                 if (error) {
+                     return response.status(500).send(error);
+                 }
+                 console.log("Inserted 3 documents into the collection");
+                 console.log(result);
+                 //response.send(result.result);
+         });
+
+     });
+
+
+
+
+
+
+
 
 });
 

@@ -60,12 +60,12 @@ class App extends Component {
     //used to insert multiple data as json object maybe
     axiosPostManyData = (event) => { //Not working
         axios.post('http://localhost:5000/insertmany', {
-            studentname: this.state.studentname,
-            phonenumber: this.state.phonenumber
+            //studentname: this.state.studentname,
+            //phonenumber: this.state.phonenumber
         })
             .then(function (response) {
                 console.log(response);
-                alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
+                //alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
             })
             .catch(function (error) {
                 console.log(error);
