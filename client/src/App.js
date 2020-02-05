@@ -35,6 +35,7 @@ class App extends Component {
 
         })
             .then((response) => {
+                console.log("doing stuff hree");
                 console.log(response.data);
             })
             .catch(function (error) {
@@ -57,6 +58,7 @@ class App extends Component {
 
     }
     //used to insert multiple data as json object maybe
+    /*
     axiosPostManyData = (event) => { //Not working
         axios.post('http://localhost:5000/insertmany', {
             //studentname: this.state.studentname,
@@ -71,6 +73,8 @@ class App extends Component {
             });
 
     }
+
+     */
     handleChange (event) {
 
         this.setState({[event.target.name]:event.target.value});
@@ -107,10 +111,7 @@ class App extends Component {
                     />
                     <input type="submit" value="Submit" />
                 </form>
-                <form onSubmit={this.axiosPostManyData}>
-                    <input type="submit" value="submitMany" />
 
-                </form>
                 <form onSubmit={this.axiosGetData}>
                     <input type="submit" value="getData" />
 

@@ -14,13 +14,13 @@ const MongoClient = require("mongodb").MongoClient;
 
 const bodyParser = require('body-parser');
 //const taskController = require("./controllers/TaskController");
-var DATABASE_NAME = "usyd";
+var DATABASE_NAME = "example";
 
 //const DATABASE_NAME = "sample_analytics";
 const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority";
 const ObjectId = require("mongodb").ObjectID;
 
-const csvFilePath='models/usydstats.csv';
+//const csvFilePath='models/usydstats.csv';
 const csv=require('csvtojson');
 
 var app = express();
@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 var database, collection;
-var tempCollectionName = "courses";
+var tempCollectionName = "people";
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -163,6 +163,8 @@ app.post("/test", (request, response) => {
 //multiple insert
 //will change to jsonObj that can load csv file later
 app.post('/insertmany',(request, response)=>{
+    /*
+    not needed anymore
 
     csv()
         .fromFile(csvFilePath)
@@ -182,11 +184,7 @@ app.post('/insertmany',(request, response)=>{
 
         });
 
-
-
-
-
-
+    */
 
 
 });
@@ -198,6 +196,7 @@ app.get("/watch", (request, response) => {
             return response.status(500).send(error);
         }
         console.log(result);
+        console.log("above from backend");
         response.send(result);
     });
 });
