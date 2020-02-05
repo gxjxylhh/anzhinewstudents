@@ -29,7 +29,6 @@ class App extends Component {
         let val = event.target.value;
         this.setState({[nam]: val});
     }
-
     */
     axiosGetData = (event) => {
         axios.get('http://localhost:5000/watch',{
@@ -126,10 +125,8 @@ class App extends Component {
     }
     /*
     handleClick(){
-
         window.open("/MyScreen");
     }
-
      */
 
 

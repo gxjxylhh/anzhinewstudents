@@ -14,13 +14,13 @@ const MongoClient = require("mongodb").MongoClient;
 
 const bodyParser = require('body-parser');
 //const taskController = require("./controllers/TaskController");
-var DATABASE_NAME = "example";
+var DATABASE_NAME = "usyd";
 
 //const DATABASE_NAME = "sample_analytics";
 const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority";
 const ObjectId = require("mongodb").ObjectID;
 
-const csvFilePath='models/usydfirstyear.csv';
+const csvFilePath='models/usydstats.csv';
 const csv=require('csvtojson');
 
 var app = express();
@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 var database, collection;
-var tempCollectionName = "people";
+var tempCollectionName = "courses";
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -103,7 +103,6 @@ app.get('/',(req,res)=>res.send('working'));
 /*
 app.post('/test',(request,response)=>{
     console.log(request.body);
-
     collection.insert(request.body, (err, response) => {
         if (error) {
             return request.status(500).send(err);
@@ -113,7 +112,6 @@ app.post('/test',(request,response)=>{
     //console.log("ee");
     //res.send('working');
 });
-
 */
 app.post("/test", (request, response) => {
     collection.insert(request.body, (error, result) => {
@@ -166,23 +164,23 @@ app.post("/test", (request, response) => {
 //will change to jsonObj that can load csv file later
 app.post('/insertmany',(request, response)=>{
 
-     csv()
-         .fromFile(csvFilePath)
-         //.then((jsonObj)=>{
-         .then((jsonObj)=>{
-             console.log(jsonObj);
+    csv()
+        .fromFile(csvFilePath)
+        //.then((jsonObj)=>{
+        .then((jsonObj)=>{
+            console.log(jsonObj);
 
-             // perform actions on the collection object
-             collection.insertMany(jsonObj, function (error, result) {
-                 if (error) {
-                     return response.status(500).send(error);
-                 }
-                 console.log("Inserted 3 documents into the collection");
-                 console.log(result);
-                 //response.send(result.result);
-         });
+            // perform actions on the collection object
+            collection.insertMany(jsonObj, function (error, result) {
+                if (error) {
+                    return response.status(500).send(error);
+                }
+                console.log("Inserted 3 documents into the collection");
+                console.log(result);
+                //response.send(result.result);
+            });
 
-     });
+        });
 
 
 
