@@ -50,36 +50,6 @@ app.listen(PORT, () => {
     });
 });
 
-//person
-app.post("/person", (request, response) => {
-    collection.insert(request.body, (error, result) => {
-        if (error) {
-            return response.status(500).send(error);
-        }
-        response.send(result.result);
-    });
-
-});
-
-app.get("/people", (request, response) => {
-    collection.find({}).toArray((error, result) => {
-        if (error) {
-            return response.status(500).send(error);
-        }
-        response.send(result);
-    });
-});
-
-
-//This is used to find all records that satisfy no certain conditions
-app.get("/accounts", (request, response) => {
-    collection.find({}).toArray((error, result) => {
-        if (error) {
-            return response.status(500).send(error);
-        }
-        response.send(result);
-    });
-});
 
 //-------------
 
@@ -98,6 +68,7 @@ app.get("/accounts/id371138", (request, response) => {
 //single insert
 
 app.post("/test", (request, response) => {
+
     collection.insert(request.body, (error, result) => {
         if (error) {
             return response.status(500).send(error);
@@ -152,9 +123,32 @@ app.post('/insertmany', (request, response) => {
 
 });
 
+app.post("/search", (request, response) => {
+
+});
+
+app.get("/watch/:q1/", (request, response) => {
+    var url = require('url');
+    var url_parts = url.parse(request.url, true);
+    var pathnamestring = url_parts.pathname;
+    const query = url_parts.query;
+    console.log(JSON.stringify(pathnamestring));
+    var keywords = JSON.stringify(pathnamestring).replace("/watch/","");
+    //let id = request.query.id; // $_GET["id"]
+    var tmp = keywords.toString();
+    console.log(tmp+"wtf");
+    collection.find({"phonenumber" : 123}).toArray((error, result) => {
+        console.log(tmp+"this is key words");
+        if (error) {
+            return response.status(500).send(error);
+        }
+        response.send(result);
+    });
+});
+
 //This is used to find all records that satisfy no certain conditions
 //app.get("/watch/:q1/:q2", (request, response) => {
-app.get("/watch", (request, response) => {
+app.get("/watch/", (request, response) => {
 
     collection.find({}).toArray((error, result) => {
         if (error) {

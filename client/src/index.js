@@ -12,19 +12,19 @@ ReactDOM.render(
     <Router>
         <div>
             <Route exact path="/">
-                <App />
+                <App/>
             </Route>
             <Route path="/news">
-                <What />
+                <What/>
             </Route>
         </div>
     </Router>
-, document.getElementById('root'));
+    , document.getElementById('root'));
 
 //<Redirect to="/" />
 
 
-    //<App/>, document.getElementById('root'));
+//<App/>, document.getElementById('root'));
 
 
 /*

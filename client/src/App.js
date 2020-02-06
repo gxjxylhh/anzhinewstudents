@@ -1,9 +1,9 @@
-import React,{ Component } from 'react';
+import React, {Component} from 'react';
 import Popup from "reactjs-popup";
 import Content from "./Content.js";
 import fetch from "node-fetch";
 
-const axios = require ('axios');
+const axios = require('axios');
 
 
 class App extends Component {
@@ -12,20 +12,26 @@ class App extends Component {
         this.state = {
             studentname: '',
             phonenumber: '',
+            searchname: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.axiosPostData = this.axiosPostData.bind(this);
         this.fetchGetData = this.fetchGetData.bind(this);
+        //this.fetchSpecificData = this.fetchSpecificData(this);
+        //this.axiosPostSearch = this.axiosPostSearch(this);
         //this.axiosGetData = this.axiosGetData.bind(this);
     }
+    showresult = (response) =>{
+        console.log(response);
 
-
+    }
 
     fetchGetData = (event) => {
         event.preventDefault();
-
-        fetch("http://localhost:5000/watch")
+        console.log(event.target.searchname.value);
+        let a = "ed";
+        fetch("http://localhost:5000/watch/"+event.target.searchname.value)
             .then(
                 function (response) {
                     if (response.status !== 200) {
@@ -37,7 +43,8 @@ class App extends Component {
                     response.json().then(function (data) {
                         console.log("anohter one");
                         console.log(data);
-                        //showresult()
+
+                        //this.showresult(data);
                     });
                 }
             )
@@ -47,41 +54,26 @@ class App extends Component {
     }
 
 
-        //https://developers.google.com/web/updates/2015/03/introduction-to-fetch
 
-        //  event.preventDefault(); is used to prevent frontend real actions
-        //  (in this case :to refresh itself automatically when changes are made)
-    /*
-    axiosGetData = (event) => {
+    //https://developers.google.com/web/updates/2015/03/introduction-to-fetch
 
-        axios.get('http://localhost:5000/watch',{
-            timeout: 2000, // Let's say you want to wait at least 180 seconds
-        })
-            .then((response) => {
-                //const path = '/result';
-                //browserHistory.push(path);
-                console.log("doing stuff hree");
-                console.log(response.data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-    */
+    //  event.preventDefault(); is used to prevent frontend real actions
+    //  (in this case :to refresh itself automatically when changes are made)
+
     axiosPostData = (event) => {
         //  event.preventDefault(); is used to prevent frontend real actions
         //  (in this case :to refresh itself automatically when changes are made)
         event.preventDefault();
         //this.setState({[event.target.name]:event.target.value});
-
+        console.log(this.state.searchname);
         axios.post('http://localhost:5000/test', {
             studentname: this.state.studentname,
-            phonenumber: this.state.phonenumber
+            phonenumber: this.state.phonenumber,
         })
             .then(function (response) {
                 console.log(response);
 
-                alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
+                //alert('A name was submitted: ' + this.state.studentname + 'age is' + this.state.phonenumber);
             })
             .catch(function (error) {
                 console.log(error);
@@ -90,16 +82,18 @@ class App extends Component {
     }
 
 
-    handleChange (event) {
+    handleChange(event) {
         //prevent may not needed?
         //event.preventDefault();
+        //value: event.target.value
         this.setState({[event.target.name]:event.target.value});
+
     }
 
 
     handleSubmit(event) {
         event.preventDefault();
-        // alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
+        //alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
         alert("yiha");
     }
 
@@ -111,8 +105,17 @@ class App extends Component {
 
             <div className="App">
                 <form onSubmit={this.fetchGetData}>
-                    <input type="submit" value="getData" />
+                    <label>You want to search:</label>
+                    <input
+                        type='text'
+                        name='searchname'
+                        value={this.state.searchname}
+                        onChange={this.handleChange}
+                    />
+                    <input type="submit" value="getData"/>
+
                 </form>
+
                 <form onSubmit={this.axiosPostData}>
                     <label>Enter your student name:</label>
                     <input
@@ -128,19 +131,21 @@ class App extends Component {
                         value={this.state.phonenumber}
                         onChange={this.handleChange}
                     />
-                    <input type="submit" value="Submit" />
+
+                    <input type="submit" value="Submit"/>
 
                 </form>
 
 
                 <h1>Click below to pop up </h1>
                 <Popup modal trigger={<button>Click Me</button>}>
-                    {close => <Content close={close} />}
+                    {close => <Content close={close}/>}
                 </Popup>
             </div>
 
         )
     }
+
     /*
     handleClick(){
         window.open("/MyScreen");
@@ -149,4 +154,5 @@ class App extends Component {
 
 
 }
+
 export default App
