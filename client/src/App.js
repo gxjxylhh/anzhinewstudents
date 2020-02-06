@@ -1,10 +1,9 @@
 import React,{ Component } from 'react';
-import ReactDOM from "react-dom";
 import Popup from "reactjs-popup";
 import Content from "./Content.js";
-const axios = require ('axios');
 
-const reactData = [{ id: 1, name:' Tom'}, { id: 2, name:' Sarah'}];
+
+const axios = require ('axios');
 
 
 class App extends Component {
@@ -16,7 +15,8 @@ class App extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-
+        this.axiosPostData = this.axiosPostData.bind(this);
+        this.axiosGetData = this.axiosGetData.bind(this);
     }
     /*
     mySubmitHandler = (event) => {
@@ -30,11 +30,19 @@ class App extends Component {
         this.setState({[nam]: val});
     }
     */
+
+
     axiosGetData = (event) => {
+        //  event.preventDefault(); is used to prevent frontend real actions
+        //  (in this case :to refresh itself automatically when changes are made)
+        event.preventDefault();
+
         axios.get('http://localhost:5000/watch',{
 
         })
             .then((response) => {
+                //const path = '/result';
+                //browserHistory.push(path);
                 console.log("doing stuff hree");
                 console.log(response.data);
             })
@@ -44,6 +52,11 @@ class App extends Component {
 
     }
     axiosPostData = (event) => {
+        //  event.preventDefault(); is used to prevent frontend real actions
+        //  (in this case :to refresh itself automatically when changes are made)
+        event.preventDefault();
+        //this.setState({[event.target.name]:event.target.value});
+
         axios.post('http://localhost:5000/test', {
             studentname: this.state.studentname,
             phonenumber: this.state.phonenumber
@@ -57,34 +70,19 @@ class App extends Component {
             });
 
     }
-    //used to insert multiple data as json object maybe
-    /*
-    axiosPostManyData = (event) => { //Not working
-        axios.post('http://localhost:5000/insertmany', {
-            //studentname: this.state.studentname,
-            //phonenumber: this.state.phonenumber
-        })
-            .then(function (response) {
-                console.log(response);
-                //alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
 
-    }
 
-     */
     handleChange (event) {
-
+        //prevent may not needed?
+        //event.preventDefault();
         this.setState({[event.target.name]:event.target.value});
     }
 
 
     handleSubmit(event) {
-        // event.preventDefault();
+        event.preventDefault();
         // alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
-
+        alert("yiha");
     }
 
 
@@ -94,6 +92,9 @@ class App extends Component {
         return (
 
             <div className="App">
+                <form onSubmit={this.axiosGetData}>
+                    <input type="submit" value="getData" />
+                </form>
                 <form onSubmit={this.axiosPostData}>
                     <label>Enter your student name:</label>
                     <input
@@ -110,12 +111,10 @@ class App extends Component {
                         onChange={this.handleChange}
                     />
                     <input type="submit" value="Submit" />
-                </form>
-
-                <form onSubmit={this.axiosGetData}>
-                    <input type="submit" value="getData" />
 
                 </form>
+
+
                 <h1>Click below to pop up </h1>
                 <Popup modal trigger={<button>Click Me</button>}>
                     {close => <Content close={close} />}

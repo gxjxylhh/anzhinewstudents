@@ -8,7 +8,7 @@
     "start": "node index.js",
     "client": "npm run start --prefix client",
     "server": "nodemon --no-deprecation index.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" --watch --watch-poll"
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" --watch ---watch-poll"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "mongoose": "^5.8.11",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "reactjs-popup": "^1.5.0",
     "router": "^1.3.4"
