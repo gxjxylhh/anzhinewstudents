@@ -128,17 +128,17 @@ app.post("/search", (request, response) => {
 });
 
 app.get("/watch/:q1/", (request, response) => {
-    var url = require('url');
-    var url_parts = url.parse(request.url, true);
-    var pathnamestring = url_parts.pathname;
-    const query = url_parts.query;
-    console.log(JSON.stringify(pathnamestring));
-    var keywords = JSON.stringify(pathnamestring).replace("/watch/","");
-    //let id = request.query.id; // $_GET["id"]
-    var tmp = keywords.toString();
-    console.log(tmp+"wtf");
-    collection.find({"phonenumber" : 123}).toArray((error, result) => {
-        console.log(tmp+"this is key words");
+    let url = require('url');
+    let url_parts = url.parse(request.url, true);
+    let pathnamestring = url_parts.pathname;
+    let keywords = String(pathnamestring);
+    keywords = keywords.replace("/watch/",'');
+    console.log(keywords+"wtf");
+    //Drives me nuts here,direct casting does not let you do comparison inside find()!
+    //However when re-initialisation, with searchQuery it works!
+    var searchQuery = { studentname: keywords };
+    collection.find(searchQuery).toArray((error, result) => {
+        //console.log(query+"this is key words");
         if (error) {
             return response.status(500).send(error);
         }
