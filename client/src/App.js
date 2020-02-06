@@ -18,19 +18,14 @@ class App extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.axiosPostData = this.axiosPostData.bind(this);
         this.fetchGetData = this.fetchGetData.bind(this);
-        //this.fetchSpecificData = this.fetchSpecificData(this);
-        //this.axiosPostSearch = this.axiosPostSearch(this);
-        //this.axiosGetData = this.axiosGetData.bind(this);
-    }
-    showresult = (response) =>{
-        console.log(response);
 
     }
+
     //Used to find specific value according to users' input
     fetchGetData = (event) => {
         event.preventDefault();
         console.log(event.target.searchname.value);
-        fetch("http://localhost:5000/watch/"+event.target.searchname.value)
+        fetch("http://localhost:5000/search/" + event.target.searchname.value)
             .then(
                 function (response) {
                     if (response.status !== 200) {
@@ -43,7 +38,6 @@ class App extends Component {
                         console.log("anohter one");
                         console.log(data);
 
-                        //this.showresult(data);
                     });
                 }
             )
@@ -52,12 +46,6 @@ class App extends Component {
             });
     }
 
-
-
-    //https://developers.google.com/web/updates/2015/03/introduction-to-fetch
-
-    //  event.preventDefault(); is used to prevent frontend real actions
-    //  (in this case :to refresh itself automatically when changes are made)
 
     axiosPostData = (event) => {
         //  event.preventDefault(); is used to prevent frontend real actions
@@ -85,7 +73,7 @@ class App extends Component {
         //prevent may not needed?
         //event.preventDefault();
         //value: event.target.value
-        this.setState({[event.target.name]:event.target.value});
+        this.setState({[event.target.name]: event.target.value});
 
     }
 

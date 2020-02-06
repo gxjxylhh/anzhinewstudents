@@ -2,26 +2,19 @@
 
 
 const express = require('express');
-
-
 const MongoClient = require("mongodb").MongoClient;
-
 const bodyParser = require('body-parser');
 const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority";
-const ObjectId = require("mongodb").ObjectID;
-
 const csv = require('csvtojson');
 const path = require('path');
-
 var app = express();
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
 var database, collection;
-
+//default database name and collection name
 var DATABASE_NAME = "example";
 var tempCollectionName = "people";
 
@@ -53,7 +46,7 @@ app.listen(PORT, () => {
 
 //-------------
 
-//this is used to find records that satisfy certain conditions
+//this is used to find records that satisfy certain conditions as example
 app.get("/accounts/id371138", (request, response) => {
     collection.find({"account_id": 371138}).toArray((error, result) => {
         if (error) {
@@ -123,20 +116,17 @@ app.post('/insertmany', (request, response) => {
 
 });
 
-app.post("/search", (request, response) => {
 
-});
-
-app.get("/watch/:q1/", (request, response) => {
+app.get("/search/:q1/", (request, response) => {
     let url = require('url');
     let url_parts = url.parse(request.url, true);
     let pathnamestring = url_parts.pathname;
     let keywords = String(pathnamestring);
-    keywords = keywords.replace("/watch/",'');
-    console.log(keywords+"wtf");
+    keywords = keywords.replace("/search/", '');
+    console.log(keywords + "wtf");
     //Drives me nuts here,direct casting does not let you do comparison inside find()!
     //However when re-initialisation, with searchQuery it works!
-    var searchQuery = { studentname: keywords };
+    var searchQuery = {studentname: keywords};
     collection.find(searchQuery).toArray((error, result) => {
         //console.log(query+"this is key words");
         if (error) {
@@ -148,7 +138,7 @@ app.get("/watch/:q1/", (request, response) => {
 
 //This is used to find all records that satisfy no certain conditions
 //app.get("/watch/:q1/:q2", (request, response) => {
-app.get("/watch/", (request, response) => {
+app.get("/search/", (request, response) => {
 
     collection.find({}).toArray((error, result) => {
         if (error) {
