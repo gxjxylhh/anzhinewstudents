@@ -18,8 +18,8 @@ var database, collection;
 var DATABASE_NAME = "example";
 var tempCollectionName = "people";
 
-
 app.use((request, response, next) => {
+
     response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
