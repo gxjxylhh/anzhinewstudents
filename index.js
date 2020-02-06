@@ -1,7 +1,6 @@
 //  index.js at root
 
 
-
 const express = require('express');
 
 
@@ -11,7 +10,7 @@ const bodyParser = require('body-parser');
 const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority";
 const ObjectId = require("mongodb").ObjectID;
 
-const csv=require('csvtojson');
+const csv = require('csvtojson');
 const path = require('path');
 
 var app = express();
@@ -19,8 +18,6 @@ var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
-
 
 
 var database, collection;
@@ -35,7 +32,6 @@ app.use((request, response, next) => {
     next();
 
 });
-
 
 
 const PORT = process.env.PORT || 5000;
@@ -67,7 +63,7 @@ app.post("/person", (request, response) => {
 
 app.get("/people", (request, response) => {
     collection.find({}).toArray((error, result) => {
-        if(error) {
+        if (error) {
             return response.status(500).send(error);
         }
         response.send(result);
@@ -129,7 +125,7 @@ app.post("/test", (request, response) => {
 
 //multiple insert
 //will change to jsonObj that can load csv file later
-app.post('/insertmany',(request, response)=>{
+app.post('/insertmany', (request, response) => {
     /*
     not needed anymore
 
@@ -157,7 +153,9 @@ app.post('/insertmany',(request, response)=>{
 });
 
 //This is used to find all records that satisfy no certain conditions
+//app.get("/watch/:q1/:q2", (request, response) => {
 app.get("/watch", (request, response) => {
+
     collection.find({}).toArray((error, result) => {
         if (error) {
             return response.status(500).send(error);
@@ -168,4 +166,5 @@ app.get("/watch", (request, response) => {
         //response.sendfile(path.resolve('index.html'))(result);
         response.send(result);
     });
+
 });

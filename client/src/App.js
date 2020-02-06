@@ -1,7 +1,7 @@
 import React,{ Component } from 'react';
 import Popup from "reactjs-popup";
 import Content from "./Content.js";
-
+import fetch from "node-fetch";
 
 const axios = require ('axios');
 
@@ -16,29 +16,46 @@ class App extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.axiosPostData = this.axiosPostData.bind(this);
-        this.axiosGetData = this.axiosGetData.bind(this);
+        this.fetchGetData = this.fetchGetData.bind(this);
+        //this.axiosGetData = this.axiosGetData.bind(this);
     }
-    /*
-    mySubmitHandler = (event) => {
+
+
+
+    fetchGetData = (event) => {
         event.preventDefault();
-        alert("You are submitting " + this.state.studentname);
+
+        fetch("http://localhost:5000/watch")
+            .then(
+                function (response) {
+                    if (response.status !== 200) {
+                        console.log('Looks like there was a problem. Status Code: ' +
+                            response.status);
+                        return;
+                    }
+                    // Examine the text in the response
+                    response.json().then(function (data) {
+                        console.log("anohter one");
+                        console.log(data);
+                        //showresult()
+                    });
+                }
+            )
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+            });
     }
-    myChangeHandler = (event) => {
-        //this.setState({username: event.target.value});
-        let nam = event.target.name;
-        let val = event.target.value;
-        this.setState({[nam]: val});
-    }
-    */
 
 
-    axiosGetData = (event) => {
+        //https://developers.google.com/web/updates/2015/03/introduction-to-fetch
+
         //  event.preventDefault(); is used to prevent frontend real actions
         //  (in this case :to refresh itself automatically when changes are made)
-        event.preventDefault();
+    /*
+    axiosGetData = (event) => {
 
         axios.get('http://localhost:5000/watch',{
-
+            timeout: 2000, // Let's say you want to wait at least 180 seconds
         })
             .then((response) => {
                 //const path = '/result';
@@ -49,8 +66,8 @@ class App extends Component {
             .catch(function (error) {
                 console.log(error);
             });
-
     }
+    */
     axiosPostData = (event) => {
         //  event.preventDefault(); is used to prevent frontend real actions
         //  (in this case :to refresh itself automatically when changes are made)
@@ -63,6 +80,7 @@ class App extends Component {
         })
             .then(function (response) {
                 console.log(response);
+
                 alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
             })
             .catch(function (error) {
@@ -92,7 +110,7 @@ class App extends Component {
         return (
 
             <div className="App">
-                <form onSubmit={this.axiosGetData}>
+                <form onSubmit={this.fetchGetData}>
                     <input type="submit" value="getData" />
                 </form>
                 <form onSubmit={this.axiosPostData}>
