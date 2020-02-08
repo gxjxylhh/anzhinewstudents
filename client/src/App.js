@@ -6,6 +6,8 @@ import 'whatwg-fetch';
 import Autocomplete from "./Autocomplete.js";
 const axios = require('axios');
 
+const utsmajors = ["A","AB","C"];
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -141,7 +143,7 @@ class App extends Component {
                     {close => <Content close={close}/>}
                 </Popup>
                 <Autocomplete
-                    suggestions={['White', 'Black', 'Green', 'Blue', 'Yellow', 'Red']}
+                    suggestions={utsmajors}
                 />
 
             </div>

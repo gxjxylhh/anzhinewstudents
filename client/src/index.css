@@ -7,7 +7,17 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
+ul {
+    list-style: none;
+}
+li::marker {
+    color: red;
+    content: "►";
+}
+li::before {
+    content: "• ";
+    color: red;
+}
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
