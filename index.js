@@ -123,7 +123,7 @@ app.get("/search/:q1/", (request, response) => {
     let pathnamestring = url_parts.pathname;
     let keywords = String(pathnamestring);
     keywords = keywords.replace("/search/", '');
-    console.log(keywords + "wtf");
+    console.log("searching keyword is : "+keywords);
     //Drives me nuts here,direct casting does not let you do comparison inside find()!
     //However when re-initialisation, with searchQuery it works!
     var searchQuery = {studentname: keywords};

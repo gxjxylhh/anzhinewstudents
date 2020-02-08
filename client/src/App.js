@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Popup from "reactjs-popup";
 import Content from "./Content.js";
 import fetch from "node-fetch";
+import 'whatwg-fetch';
 
 const axios = require('axios');
 
@@ -15,13 +16,14 @@ class App extends Component {
             searchname: '',
         };
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleSubmit = this.handleSubmit.bind(this);
         this.axiosPostData = this.axiosPostData.bind(this);
         this.fetchGetData = this.fetchGetData.bind(this);
 
     }
 
     //Used to find specific value according to users' input
+    //Somehow ios cant send or retrieve info using fetch/axios
     fetchGetData = (event) => {
         event.preventDefault();
         console.log(event.target.searchname.value);
@@ -35,9 +37,8 @@ class App extends Component {
                     }
                     // Examine the text in the response
                     response.json().then(function (data) {
-                        console.log("anohter one");
-                        console.log(data);
-
+                        console.log("This is student name :"+ data[0].studentname);
+                        alert("student name is :"+data[0].studentname + "and its phone number is :"+ data[0].phonenumber);
                     });
                 }
             )
@@ -60,11 +61,11 @@ class App extends Component {
             .then(function (response) {
                 console.log(response);
 
-                //alert('A name was submitted: ' + this.state.studentname + 'age is' + this.state.phonenumber);
             })
             .catch(function (error) {
                 console.log(error);
             });
+        alert('A name was submitted: ' + this.state.studentname + '  phone number is' + this.state.phonenumber);
 
     }
 
@@ -77,13 +78,13 @@ class App extends Component {
 
     }
 
-
+/*
     handleSubmit(event) {
         event.preventDefault();
         //alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
         alert("yiha");
     }
-
+*/
 
     render() {
         let header = '';
@@ -128,6 +129,7 @@ class App extends Component {
                 <Popup modal trigger={<button>Click Me</button>}>
                     {close => <Content close={close}/>}
                 </Popup>
+
             </div>
 
         )
