@@ -73,22 +73,6 @@ app.post("/test", (request, response) => {
         }
         response.send(result.result);
     });
-
-    //可以在不同函数重复连接mongoClient,只需要修改DATABASE_NAME和tempCollectionName即可
-    /*
-    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true}, (error, client) => {
-        if (error) {
-            throw error;
-        }
-        DATABASE_NAME = "sample_analytics";
-        tempCollectionName = "accounts";
-        database = client.db(DATABASE_NAME);
-        collection = database.collection(tempCollectionName);
-        console.log("Connected to " + DATABASE_NAME);
-        //console.log("Connected to `"+collection);
-    });
-
-    */
 });
 
 
