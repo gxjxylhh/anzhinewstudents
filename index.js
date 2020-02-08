@@ -29,8 +29,24 @@ app.use((request, res, next) => {
 
 const PORT = process.env.PORT || 5000;
 
+//helperfunction to change databse entry
+
+function helperfunc(){
+    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true}, (error, client) => {
+        if (error) {
+            throw error;
+        }
+
+        database = client.db(DATABASE_NAME);
+        collection = database.collection(tempCollectionName);
+        console.log("Connected to " + DATABASE_NAME);
+        //console.log("Connected to `"+collection);
+    });
+
+};
 
 app.listen(PORT, () => {
+    //helperfunc();
     MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true}, (error, client) => {
         if (error) {
             throw error;
@@ -43,6 +59,21 @@ app.listen(PORT, () => {
     });
 });
 
+app.get("/uni/:q1/", (request, response) => {
+    let url = require('url');
+    //let url_parts =url.parse(request.url, true).pathname ;
+    //let pathnamestring = url_parts.pathname;
+    let keywords = String(url.parse(request.url, true).pathname);
+    keywords = keywords.replace("/uni/", '');
+    keywords = keywords.replace("%20", ' ');
+    console.log("uni keyword is : " + keywords);
+    DATABASE_NAME = keywords;
+    //helperfunc();
+    //response.send(keywords);
+    //MongoClient.close();
+    helperfunc();
+
+});
 
 //-------------
 
@@ -73,6 +104,7 @@ app.post("/test", (request, response) => {
         }
         response.send(result.result);
     });
+
 });
 
 
@@ -138,7 +170,6 @@ app.get("/search/", (request, response) => {
         //response.sendfile(path.resolve('index.html'))(result);
         response.send(result);
     });
-
 });
 
 

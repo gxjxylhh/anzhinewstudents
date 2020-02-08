@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import './index.css';
 
 export class Autocomplete extends Component {
     static propTypes = {
@@ -10,6 +11,8 @@ export class Autocomplete extends Component {
     };
     constructor(props) {
         super(props);
+        //console.log(this.props.name+"props major name");
+
         this.state = {
             activeSuggestion: 0,
             filteredSuggestions: [],
@@ -19,6 +22,7 @@ export class Autocomplete extends Component {
     }
 
     onChange = e => {
+
         const { suggestions } = this.props;
         const userInput = e.currentTarget.value;
 
@@ -36,6 +40,7 @@ export class Autocomplete extends Component {
     };
 
     onClick = e => {
+
         this.setState({
             activeSuggestion: 0,
             filteredSuggestions: [],
@@ -44,6 +49,7 @@ export class Autocomplete extends Component {
         });
     };
     onKeyDown = e => {
+
         const { activeSuggestion, filteredSuggestions } = this.state;
 
         if (e.keyCode === 13) {
@@ -89,6 +95,7 @@ export class Autocomplete extends Component {
 
                             if (index === activeSuggestion) {
                                 className = "";
+                                //console.log(this.state.userInput+"   hooo ya");
                             }
 
                             return (
@@ -112,12 +119,14 @@ export class Autocomplete extends Component {
             <React.Fragment>
                 <input
                     type="search"
+                    name="majorname"
                     onChange={onChange}
                     onKeyDown={onKeyDown}
                     value={userInput}
                 />
                 {suggestionsListComponent}
             </React.Fragment>
+
         );
     }
 }

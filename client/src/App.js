@@ -4,9 +4,11 @@ import Content from "./Content.js";
 import fetch from "node-fetch";
 import 'whatwg-fetch';
 import Autocomplete from "./Autocomplete.js";
+
+
 const axios = require('axios');
 
-const utsmajors = ["A","AB","C"];
+const utsmajors = ["A","AcB","C","Adult Education","3A3","ACCT3001","ACCT3002"];
 
 class App extends Component {
     constructor(props) {
@@ -15,7 +17,7 @@ class App extends Component {
             studentname: '',
             phonenumber: '',
             searchname: '',
-            majorname: '',
+            majorname:'',
             uniname: '',
         };
         this.handleChange = this.handleChange.bind(this);
@@ -24,23 +26,46 @@ class App extends Component {
         this.fetchGetData = this.fetchGetData.bind(this);
 
     }
-
+    /*
+    getFromChild = (value) => {
+        this.setState({majorname:value})
+    }*/
     //Used to find specific value according to users' input
     //Somehow ios cant send or retrieve info using fetch/axios
     fetchGetData = (event) => {
 
         event.preventDefault();
-        console.log(event.target.majorname.value+" this is event major name");
-        //work
+        console.log(event.target.majorname.value+" major is");
+        console.log("the state majorname is "+ this.state.majorname);
+        console.log("uni name is "+ this.state.uniname);
+        //Also Note that majorname as a selected result that sent from auto complete
+        //can not be saved into state of App somehow
         //192.168.1.104 as localhost address
-        fetch("http://192.168.1.104:5000/search/" + event.target.majorname.value)
+
+        //change database entry
+
+        fetch("http://192.168.1.104:5000/uni/" +this.state.uniname)
+            .then((res) =>{
+                console.log(res);
+            },(error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            })
+        //change collection(major) entry
+        fetch("http://192.168.1.104:5000/search/" +event.target.majorname.value)
             .then(res => res.json())
             .then(
                 (res) => {
                     //element can be obatined through res[0].elementname
                     //since res is represented as array there
-                    if(res.length == 0){
-                        console.log("no such data in database, check your input please");
+                    if(res.length === 0){
+                        alert("No course found, please press button again or check your spelling"+
+                            "\n\nps: only capitalized university name available eg: USYD,UNSW,UTS"+
+                            "\n\npps: please select major name rather than enter in as full name"+
+                            "\n\nppps: re-press the button can solve90% issues or refresh page");
+
                     }else{
                         console.log("course array length is"+res.length);
 
@@ -51,8 +76,6 @@ class App extends Component {
                         alert(res[i].course);// but this can be used for testing ~
                         console.log("courses are:" + res[i].course)
                     }
-
-                    console.log("doing frontend fetching");
                 },
                 // Note: it's important to handle errors here
                 (error) => {
@@ -77,21 +100,17 @@ class App extends Component {
         })
             .then(function (response) {
                 console.log(response);
-
             })
             .catch(function (error) {
                 console.log(error);
             });
-
         alert('A name was submitted: ' + this.state.studentname + '  phone number is' + this.state.phonenumber);
-
     }
 
 
     handleChange(event) {
         //prevent may not needed?
         //event.preventDefault();
-        //value: event.target.value
         this.setState({[event.target.name]: event.target.value});
     }
 
@@ -103,6 +122,7 @@ class App extends Component {
         }
     */
 
+
     render() {
         let header = '';
 
@@ -110,14 +130,19 @@ class App extends Component {
 
             <div className="App">
                 <form onSubmit={this.fetchGetData}>
-                    <label>You want to search this major :</label>
+                    <label>University Name :</label>
                     <input
                         type='text'
-                        name='majorname'
-                        value={this.state.majorname}
+                        name='uniname'
+                        value={this.state.uniname}
                         onChange={this.handleChange}
                     />
+
+                    <Autocomplete
+                        suggestions={utsmajors}
+                    />
                     <input type="submit" value="getData"/>
+
                 </form>
 
                 <form onSubmit={this.axiosPostData}>
@@ -142,22 +167,12 @@ class App extends Component {
                 <Popup modal trigger={<button>Click Me</button>}>
                     {close => <Content close={close}/>}
                 </Popup>
-                <Autocomplete
-                    suggestions={utsmajors}
-                />
+
 
             </div>
 
         )
     }
 
-    /*
-    handleClick(){
-        window.open("/MyScreen");
-    }
-     */
-
-
 }
-// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 export default App
