@@ -5,8 +5,8 @@ const express = require('express');
 const MongoClient = require("mongodb").MongoClient;
 const bodyParser = require('body-parser');
 const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority";
-const csv = require('csvtojson');
-const path = require('path');
+//const csv = require('csvtojson');
+//const path = require('path');
 var app = express();
 
 app.use(bodyParser.json());
@@ -15,13 +15,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 var database, collection;
 //default database name and collection name
-var DATABASE_NAME = "example";
-var tempCollectionName = "people";
+var DATABASE_NAME = "uts";
+var tempCollectionName = "courses";
 
-app.use((request, response, next) => {
+app.use((request, res, next) => {
 
-    response.header("Access-Control-Allow-Origin", "*");
-    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 
 });
@@ -47,6 +47,7 @@ app.listen(PORT, () => {
 //-------------
 
 //this is used to find records that satisfy certain conditions as example
+//just example
 app.get("/accounts/id371138", (request, response) => {
     collection.find({"account_id": 371138}).toArray((error, result) => {
         if (error) {
@@ -61,6 +62,10 @@ app.get("/accounts/id371138", (request, response) => {
 //single insert
 
 app.post("/test", (request, response) => {
+
+    //data from frontend
+    console.log(request.body);
+
 
     collection.insert(request.body, (error, result) => {
         if (error) {
@@ -89,12 +94,12 @@ app.post("/test", (request, response) => {
 
 //multiple insert
 //will change to jsonObj that can load csv file later
+/*
 app.post('/insertmany', (request, response) => {
-    /*
-    not needed anymore
+
 
     csv()
-        .fromFile(csvFilePath)
+        .fromFile('/Users/Richrad/Documents/anzhinewstudents/models/utsstats.csv')
         //.then((jsonObj)=>{
         .then((jsonObj)=>{
             console.log(jsonObj);
@@ -111,22 +116,20 @@ app.post('/insertmany', (request, response) => {
 
         });
 
-    */
-
-
 });
-
+*/
 
 app.get("/search/:q1/", (request, response) => {
     let url = require('url');
-    let url_parts = url.parse(request.url, true);
-    let pathnamestring = url_parts.pathname;
-    let keywords = String(pathnamestring);
+    //let url_parts =url.parse(request.url, true).pathname ;
+    //let pathnamestring = url_parts.pathname;
+    let keywords = String(url.parse(request.url, true).pathname);
     keywords = keywords.replace("/search/", '');
-    console.log("searching keyword is : "+keywords);
+    keywords = keywords.replace("%20", ' ');
+    console.log("searching keyword is : " + keywords);
     //Drives me nuts here,direct casting does not let you do comparison inside find()!
     //However when re-initialisation, with searchQuery it works!
-    var searchQuery = {studentname: keywords};
+    var searchQuery = {major: keywords};
     collection.find(searchQuery).toArray((error, result) => {
         //console.log(query+"this is key words");
         if (error) {
@@ -138,6 +141,7 @@ app.get("/search/:q1/", (request, response) => {
 
 //This is used to find all records that satisfy no certain conditions
 //app.get("/watch/:q1/:q2", (request, response) => {
+
 app.get("/search/", (request, response) => {
 
     collection.find({}).toArray((error, result) => {
@@ -152,3 +156,23 @@ app.get("/search/", (request, response) => {
     });
 
 });
+
+
+//works
+/*
+app.get("/search/:qname", (request, response) => {
+
+    collection.find({"studentname":qname}).toArray((error, result) => {
+        //console.log(query+"this is key words");
+        if (error) {
+            return response.status(500).send(error);
+        }
+        response.send(result);
+    });
+    console.log(request.params.qname+"is");
+    //response.send(response);
+
+    response.send("ss");
+});
+
+ */

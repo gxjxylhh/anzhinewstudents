@@ -14,6 +14,8 @@ class App extends Component {
             studentname: '',
             phonenumber: '',
             searchname: '',
+            majorname: '',
+            uniname: '',
         };
         this.handleChange = this.handleChange.bind(this);
         //this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,26 +28,33 @@ class App extends Component {
     //Somehow ios cant send or retrieve info using fetch/axios
     fetchGetData = (event) => {
         event.preventDefault();
-        console.log(event.target.searchname.value);
-        fetch("http://localhost:5000/search/" + event.target.searchname.value)
+        console.log(event.target.majorname.value+" this is event major name");
+        //work
+        //192.168.1.104 as localhost address
+        fetch("http://192.168.1.104:5000/search/" + event.target.majorname.value)
+            .then(res => res.json())
             .then(
-                function (response) {
-                    if (response.status !== 200) {
-                        console.log('Looks like there was a problem. Status Code: ' +
-                            response.status);
-                        return;
+                (res) => {
+                    console.log(res + "_!!!@@!@!@");
+                    //element can be obatined through res[0].elementname
+                    //since res is represented as array there
+                    console.log(res.length);
+                    for (var i = 0; i < res.length; i++) {
+                        //dont wanna alert jump out too many times :D
+                        //show courses
+                        alert(res[i].course);// but this can be used for testing ~
+                        console.log("courses are:" + res[i].course)
                     }
-                    // Examine the text in the response
-                    response.json().then(function (data) {
-                        console.log("This is student name :"+ data[0].studentname);
-                        alert("student name is :"+data[0].studentname + "and its phone number is :"+ data[0].phonenumber);
+                },
+                // Note: it's important to handle errors here
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
                     });
                 }
             )
-            .catch(function (err) {
-                console.log('Fetch Error :-S', err);
-            });
-    }
+    };
 
 
     axiosPostData = (event) => {
@@ -54,7 +63,7 @@ class App extends Component {
         event.preventDefault();
         //this.setState({[event.target.name]:event.target.value});
         //console.log(this.state.searchname);
-        axios.post('http://localhost:5000/test', {
+        axios.post('http://192.168.1.104:5000/test', {
             studentname: this.state.studentname,
             phonenumber: this.state.phonenumber,
         })
@@ -65,6 +74,7 @@ class App extends Component {
             .catch(function (error) {
                 console.log(error);
             });
+
         alert('A name was submitted: ' + this.state.studentname + '  phone number is' + this.state.phonenumber);
 
     }
@@ -78,13 +88,13 @@ class App extends Component {
 
     }
 
-/*
-    handleSubmit(event) {
-        event.preventDefault();
-        //alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
-        alert("yiha");
-    }
-*/
+    /*
+        handleSubmit(event) {
+            event.preventDefault();
+            //alert('A name was submitted: ' + this.state.studentname+ 'age is'+this.state.phonenumber);
+            alert("yiha");
+        }
+    */
 
     render() {
         let header = '';
@@ -93,15 +103,14 @@ class App extends Component {
 
             <div className="App">
                 <form onSubmit={this.fetchGetData}>
-                    <label>You want to search:</label>
+                    <label>You want to search this major :</label>
                     <input
                         type='text'
-                        name='searchname'
-                        value={this.state.searchname}
+                        name='majorname'
+                        value={this.state.majorname}
                         onChange={this.handleChange}
                     />
                     <input type="submit" value="getData"/>
-
                 </form>
 
                 <form onSubmit={this.axiosPostData}>
@@ -119,12 +128,9 @@ class App extends Component {
                         value={this.state.phonenumber}
                         onChange={this.handleChange}
                     />
-
                     <input type="submit" value="Submit"/>
 
                 </form>
-
-
                 <h1>Click below to pop up </h1>
                 <Popup modal trigger={<button>Click Me</button>}>
                     {close => <Content close={close}/>}
