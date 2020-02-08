@@ -3,9 +3,8 @@ import Popup from "reactjs-popup";
 import Content from "./Content.js";
 import fetch from "node-fetch";
 import 'whatwg-fetch';
-
+import Autocomplete from "./Autocomplete.js";
 const axios = require('axios');
-
 
 class App extends Component {
     constructor(props) {
@@ -27,6 +26,7 @@ class App extends Component {
     //Used to find specific value according to users' input
     //Somehow ios cant send or retrieve info using fetch/axios
     fetchGetData = (event) => {
+
         event.preventDefault();
         console.log(event.target.majorname.value+" this is event major name");
         //work
@@ -35,16 +35,22 @@ class App extends Component {
             .then(res => res.json())
             .then(
                 (res) => {
-                    console.log(res + "_!!!@@!@!@");
                     //element can be obatined through res[0].elementname
                     //since res is represented as array there
-                    console.log(res.length);
+                    if(res.length == 0){
+                        console.log("no such data in database, check your input please");
+                    }else{
+                        console.log("course array length is"+res.length);
+
+                    }
                     for (var i = 0; i < res.length; i++) {
                         //dont wanna alert jump out too many times :D
                         //show courses
                         alert(res[i].course);// but this can be used for testing ~
                         console.log("courses are:" + res[i].course)
                     }
+
+                    console.log("doing frontend fetching");
                 },
                 // Note: it's important to handle errors here
                 (error) => {
@@ -85,7 +91,6 @@ class App extends Component {
         //event.preventDefault();
         //value: event.target.value
         this.setState({[event.target.name]: event.target.value});
-
     }
 
     /*
@@ -135,6 +140,9 @@ class App extends Component {
                 <Popup modal trigger={<button>Click Me</button>}>
                     {close => <Content close={close}/>}
                 </Popup>
+                <Autocomplete
+                    suggestions={['White', 'Black', 'Green', 'Blue', 'Yellow', 'Red']}
+                />
 
             </div>
 
@@ -149,5 +157,5 @@ class App extends Component {
 
 
 }
-
+// Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 export default App
