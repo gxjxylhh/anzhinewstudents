@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import './index.css';
 
 export class Autocomplete extends Component {
     static propTypes = {
@@ -109,7 +108,7 @@ export class Autocomplete extends Component {
             } else {
                 suggestionsListComponent = (
                     <div className="no-suggestions">
-                        <em>No such majors in database, please check your spelling</em>
+                        <em>please press the next button then delete and re-enter university name</em>
                     </div>
                 );
             }

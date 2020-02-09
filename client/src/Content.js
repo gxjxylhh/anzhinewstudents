@@ -8,7 +8,7 @@ export default ({ close }) => (
         <div className="header"> Hi </div>
         <div className="content">
             {" "}
-            Have a nice day!
+            Thank you for your participation~ Have a nice day!
             <br />
             :)
         </div>

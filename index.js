@@ -15,7 +15,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 var database, collection;
 //default database name and collection name
-var DATABASE_NAME = "uts";
+//remember to change when needed
+var DATABASE_NAME = "";
 var tempCollectionName = "courses";
 
 app.use((request, res, next) => {
@@ -66,8 +67,10 @@ app.get("/uni/:q1/", (request, response) => {
     let keywords = String(url.parse(request.url, true).pathname);
     keywords = keywords.replace("/uni/", '');
     keywords = keywords.replace("%20", ' ');
+    keywords.toLowerCase();
     console.log("uni keyword is : " + keywords);
     DATABASE_NAME = keywords;
+    tempCollectionName = "courses";
     //helperfunc();
     //response.send(keywords);
     //MongoClient.close();
@@ -92,17 +95,26 @@ app.get("/accounts/id371138", (request, response) => {
 
 //single insert
 
-app.post("/test", (request, response) => {
-
+app.post("/submitinfo", (request, response) => {
+    DATABASE_NAME = "Students";
+    tempCollectionName = "info";
     //data from frontend
     console.log(request.body);
-
-
-    collection.insert(request.body, (error, result) => {
+    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true}, (error, client) => {
         if (error) {
-            return response.status(500).send(error);
+            throw error;
         }
-        response.send(result.result);
+        database = client.db(DATABASE_NAME);
+        collection = database.collection(tempCollectionName);
+        console.log("Connected to " + DATABASE_NAME);
+        //console.log("Connected to `"+collection);
+        collection.insert(request.body, (error, result) => {
+            if (error) {
+                return response.status(500).send(error);
+            }
+            response.send(result.result);
+        });
+
     });
 
 });
