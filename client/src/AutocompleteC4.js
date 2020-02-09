@@ -107,7 +107,6 @@ export class AutocompleteC4 extends Component {
             } else {
                 suggestionsListComponent = (
                     <div className="no-suggestions">
-                        <em></em>
                     </div>
                 );
             }

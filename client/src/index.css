@@ -38,9 +38,9 @@ body {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 20px;
+    font-size: 15px;
     transition-duration: 0.4s;
-
+    size: 15px;
 }
 
 
@@ -108,11 +108,11 @@ code {
     position: absolute;
     display: block;
     padding: 2px 5px;
-    line-height: 20px;
+    line-height: 10px;
     right: -10px;
     top: -10px;
     font-size: 24px;
     background: #ffffff;
-    border-radius: 18px;
+    border-radius: 15px;
     border: 1px solid #cfcece;
 }
