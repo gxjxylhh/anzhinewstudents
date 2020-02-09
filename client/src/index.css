@@ -63,12 +63,12 @@ li:hover {
     color: green;
 }
 li::marker {
-    color: red;
+    color: mediumpurple;
     content: "►";
 }
 li::before {
     content: "• ";
-    color: red;
+    color: mediumslateblue;
 }
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

@@ -896,10 +896,10 @@ class App extends Component {
                     //since res is represented as array there
                     if (res.length === 0) {
                         alert("only lowercase will be accepted eg: usyd, unsw, uts" +
-                            "\npps: delete and re-enter the university name"+
-                            "\nthen press the Load button again can solve90% issues"+
-                            "\n\n if this is second time or third time that you see this message" +
-                            "\nyou may want to try enter information pure manually");
+                            "\n\nps: please first delete and re-enter the university name"+
+                            "\nthen press the Load button again "+
+                            "\n\n if the issue persists, ignore this" +
+                            "\nand manually input your info please");
 
                     } else {
                         console.log("course array length is" + res.length);
@@ -912,8 +912,8 @@ class App extends Component {
                         alert("courses has been loaded~"+"enjoy with auto-completion feature~");
                         //normally there should be only 1 array returned that has multiple elements inside
                         //console.log("courses are:" + res[i].course);
-                        courselist = res[i].course;
-                        //courselist = courselist.concat(res[i].course);
+                        //courselist = res[i].course;
+                        courselist = courselist.concat(res[i].course);
                         //console.log(courselist + "course list is ~~~");
                     }
                 },
@@ -986,7 +986,7 @@ class App extends Component {
                         onChange = {this.handleChange}
                     />
                     <br></br>
-                    <input type="button" className="button" value="Load"/>
+                    <input type="submit" className="button" value="Load"/>
                 </form>
 
                 <form onSubmit={this.axiosPostData}>
@@ -1044,7 +1044,7 @@ class App extends Component {
                     />
                     <br></br>
 
-                    <Popup modal trigger={<input type = "button" className="button1" value="Submit"></input>}>
+                    <Popup modal trigger={<input type = "submit" className="button1" value="Submit"></input>}>
                         {close => <Content close={close}/>}
                     </Popup>
 
