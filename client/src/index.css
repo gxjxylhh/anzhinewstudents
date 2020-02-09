@@ -12,7 +12,7 @@ body {
 .button {
     background-color: lightsteelblue;
     border: none;
-    color: white;
+    color: darkcyan;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -30,7 +30,32 @@ body {
     color: white;
 }
 
+.button1 {
+    background-color: lightsteelblue;
+    border: none;
+    color: lightseagreen;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    transition-duration: 0.4s;
 
+}
+
+
+
+
+.button1:hover {
+    background-color: mediumslateblue; /* Green */
+    color: white;
+}
+label{
+    color: #262b37;
+}
+label:hover{
+    color: #321f34;
+}
 li {
     cursor: pointer;
 }

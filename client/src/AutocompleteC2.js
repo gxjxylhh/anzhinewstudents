@@ -118,6 +118,7 @@ export class AutocompleteC2 extends Component {
                 <input
                     type="search"
                     name="course2"
+                    size = '35'
                     onChange={onChange}
                     onKeyDown={onKeyDown}
                     value={userInput}

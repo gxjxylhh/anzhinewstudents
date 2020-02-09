@@ -897,7 +897,7 @@ class App extends Component {
                     if (res.length === 0) {
                         alert("only lowercase will be accepted eg: usyd, unsw, uts" +
                             "\npps: delete and re-enter the university name"+
-                            "\nthen press the Next button again can solve90% issues"+
+                            "\nthen press the Load button again can solve90% issues"+
                             "\n\n if this is second time or third time that you see this message" +
                             "\nyou may want to try enter information pure manually");
 
@@ -972,6 +972,7 @@ class App extends Component {
                     <input
                         type='text'
                         name='uniname'
+                        size = '35'
                         value={this.state.uniname}
                         onChange={this.handleChange}
                     />
@@ -985,7 +986,7 @@ class App extends Component {
                         onChange = {this.handleChange}
                     />
                     <br></br>
-                    <input type="button" className="button" value="Next"/>
+                    <input type="button" className="button" value="Load"/>
                 </form>
 
                 <form onSubmit={this.axiosPostData}>
@@ -994,6 +995,7 @@ class App extends Component {
                     <input
                         type='text'
                         name='studentname'
+                        size = '35'
                         value={this.state.studentname}
                         onChange={this.handleChange}
                     />
@@ -1003,6 +1005,7 @@ class App extends Component {
                     <input
                         type='text'
                         name='phonenumber'
+                        size = '35'
                         value={this.state.phonenumber}
                         onChange={this.handleChange}
                     />
@@ -1041,7 +1044,7 @@ class App extends Component {
                     />
                     <br></br>
 
-                    <Popup modal trigger={<button>Click Me</button>}>
+                    <Popup modal trigger={<input type = "button" className="button1" value="Submit"></input>}>
                         {close => <Content close={close}/>}
                     </Popup>
 

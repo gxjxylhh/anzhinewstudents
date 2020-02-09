@@ -108,7 +108,7 @@ export class Autocomplete extends Component {
             } else {
                 suggestionsListComponent = (
                     <div className="no-suggestions">
-                        <em>please press the next button then delete and re-enter university name</em>
+                        <em>please press the Load button then delete and re-enter university name</em>
                     </div>
                 );
             }
@@ -119,6 +119,7 @@ export class Autocomplete extends Component {
                 <input
                     type="search"
                     name="majorname"
+                    size = '35'
                     onChange={onChange}
                     onKeyDown={onKeyDown}
                     value={userInput}
