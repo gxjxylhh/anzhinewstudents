@@ -1,0 +1,5 @@
+mongoose.connect(process.env.MONGODB_URI || `mongodb://mongodb+srv://Ricky:<12321>@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority
+`);
+
+
+mongoose.connect("mongodb://mongodb+srv://Ricky:<12321>@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
