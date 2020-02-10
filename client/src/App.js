@@ -844,6 +844,7 @@ class App extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.axiosPostData = this.axiosPostData.bind(this);
         this.fetchGetData = this.fetchGetData.bind(this);
+
         /*
         //maybe can be used if intialised uniname at the first stage
 
@@ -960,7 +961,6 @@ class App extends Component {
         //event.preventDefault();
         this.setState({[event.target.name]: event.target.value});
     }
-
 
     render() {
         let header = '';
