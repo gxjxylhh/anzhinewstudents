@@ -988,6 +988,7 @@ class App extends Component {
                     />
                     <br></br>
                     <input type="submit" className="button" value="Load"/>
+
                 </form>
 
                 <form onSubmit={this.axiosPostData}>
