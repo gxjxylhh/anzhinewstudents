@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="513b127a-6aac-4516-a37b-a85533bcbe18" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/concurrently/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/concurrently/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="513b127a-6aac-4516-a37b-a85533bcbe18" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/client/node_modules/" />
@@ -73,8 +67,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="948" column="38" lean-forward="true" selection-start-line="948" selection-start-column="38" selection-end-line="948" selection-end-column="38" />
+            <state relative-caret-position="270">
+              <caret line="950" column="37" selection-start-line="950" selection-start-column="37" selection-end-line="950" selection-end-column="37" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#420#12185#0" />
@@ -223,15 +217,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1581339881848</updated>
-      <workItem from="1581339888343" duration="2331000" />
+      <workItem from="1581339888343" duration="2638000" />
     </task>
+    <task id="LOCAL-00001" summary="Revert &quot;.&quot;&#10;&#10;This reverts commit 9e05c4f2">
+      <created>1581343160583</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581343160584</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2331000" />
+    <option name="totallyTimeSpent" value="2638000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="826" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Designer" />
       <window_info id="Image Layers" />
@@ -283,6 +286,10 @@
         <option value="1" />
       </list>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Revert &quot;.&quot;&#10;&#10;This reverts commit 9e05c4f2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;.&quot;&#10;&#10;This reverts commit 9e05c4f2" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/yarn-error.log">
@@ -351,8 +358,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="948" column="38" lean-forward="true" selection-start-line="948" selection-start-column="38" selection-end-line="948" selection-end-column="38" />
+        <state relative-caret-position="270">
+          <caret line="950" column="37" selection-start-line="950" selection-start-column="37" selection-end-line="950" selection-end-column="37" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#420#12185#0" />
