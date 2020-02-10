@@ -869,8 +869,7 @@ class App extends Component {
         //can not be saved into state of App somehow
         //192.168.1.104 as localhost address
         //change database entry
-        //use process.env.ipaddr to replace local ip
-        fetch(process.env.ipaddr+"/uni/" + this.state.uniname || "localhost:3000/uni/"+ this.state.uniname)
+        fetch("http://192.168.1.104:5000/uni/" + this.state.uniname)
             .then((res) => {
                 console.log(res);
             }, (error) => {
@@ -889,8 +888,7 @@ class App extends Component {
             console.log("input error");
         }
         //change collection(major) entry
-        //use process.env.ipaddr to replace local ip
-        fetch(process.env.ipaddr+"/search/" + event.target.majorname.value|| "localhost:3000/search/"+ event.target.majorname.value)
+        fetch("http://192.168.1.104:5000/search/" + event.target.majorname.value)
             .then(res => res.json())
             .then(
                 (res) => {
@@ -936,7 +934,7 @@ class App extends Component {
         //  event.preventDefault(); is used to prevent frontend real actions
         //  (in this case :to refresh itself automatically when changes are made)
         event.preventDefault();
-        axios.post('http://192.168.1.106:5000/submitinfo', {
+        axios.post('http://192.168.1.104:5000/submitinfo', {
             studentname: this.state.studentname,
             phonenumber: this.state.phonenumber,
             uniname: this.state.uniname,
