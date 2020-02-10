@@ -869,7 +869,8 @@ class App extends Component {
         //can not be saved into state of App somehow
         //192.168.1.104 as localhost address
         //change database entry
-        fetch("http://192.168.1.106:5000/uni/" + this.state.uniname)
+        //use process.env.ipaddr to replace local ip
+        fetch(process.env.ipaddr+"/uni/" + this.state.uniname || "localhost:3000/uni/"+ this.state.uniname)
             .then((res) => {
                 console.log(res);
             }, (error) => {
@@ -888,7 +889,8 @@ class App extends Component {
             console.log("input error");
         }
         //change collection(major) entry
-        fetch("http://192.168.1.106:5000/search/" + event.target.majorname.value)
+        //use process.env.ipaddr to replace local ip
+        fetch(process.env.ipaddr+"/search/" + event.target.majorname.value|| "localhost:3000/search/"+ event.target.majorname.value)
             .then(res => res.json())
             .then(
                 (res) => {
