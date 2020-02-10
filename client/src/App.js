@@ -869,6 +869,10 @@ class App extends Component {
         //can not be saved into state of App somehow
         //192.168.1.104 as localhost address
         //change database entry
+        //------------------------------------
+        //process.env directs to localhost:3000 automatically
+        //------------------------------------
+
         fetch("http://192.168.1.104:5000/uni/" + this.state.uniname)
             .then((res) => {
                 console.log(res);
@@ -888,6 +892,10 @@ class App extends Component {
             console.log("input error");
         }
         //change collection(major) entry
+        //------------------------------------
+        //process.env directs to localhost:3000 automatically
+        //------------------------------------
+
         fetch("http://192.168.1.104:5000/search/" + event.target.majorname.value)
             .then(res => res.json())
             .then(
