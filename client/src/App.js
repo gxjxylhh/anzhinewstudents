@@ -874,14 +874,7 @@ class App extends Component {
         //------------------------------------
 
         fetch("http://192.168.1.104:5000/uni/" + this.state.uniname)
-            .then((res) => {
-                console.log(res);
-            }, (error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-            })
+
         if (this.state.uniname === "uts") {
             majorforsearch = utsmajors;
         } else if (this.state.uniname === "usyd") {
