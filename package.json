@@ -8,7 +8,7 @@
     "start": "node index.js",
     "client": "npm start --prefix client",
     "server": "nodemon --no-deprecation index.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" --watch ---watch-poll",
+    "dev": "concurrently --kill-others-on-fail  \"npm run client\" \"npm run server\"--watch ---watch-poll",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
 
   },
