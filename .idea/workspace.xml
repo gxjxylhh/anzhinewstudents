@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="513b127a-6aac-4516-a37b-a85533bcbe18" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="513b127a-6aac-4516-a37b-a85533bcbe18" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/client/node_modules/" />
@@ -28,10 +26,10 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2610">
+            <state relative-caret-position="743">
               <caret line="981" column="29" selection-start-line="981" selection-start-column="29" selection-end-line="981" selection-end-column="29" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
@@ -48,10 +46,10 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="225">
               <caret line="15" column="15" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="15" />
             </state>
           </provider>
@@ -236,7 +234,7 @@
       <updated>1581339881848</updated>
       <workItem from="1581339888343" duration="2638000" />
       <workItem from="1581344363039" duration="6166000" />
-      <workItem from="1581354200342" duration="306000" />
+      <workItem from="1581354200342" duration="1191000" />
     </task>
     <task id="LOCAL-00001" summary="Revert &quot;.&quot;&#10;&#10;This reverts commit 9e05c4f2">
       <created>1581343160583</created>
@@ -249,7 +247,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9110000" />
+    <option name="totallyTimeSpent" value="9995000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="826" extended-state="0" />
@@ -350,19 +348,6 @@
     <entry file="file://$PROJECT_DIR$/client/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2610">
-          <caret line="981" column="29" selection-start-line="981" selection-start-column="29" selection-end-line="981" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#420#12185#0" />
-            <element signature="e#12206#17042#0" />
-            <element signature="e#17063#24381#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/package.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -387,6 +372,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="15" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -394,10 +386,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/client/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="15" column="15" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="15" />
+        <state relative-caret-position="743">
+          <caret line="981" column="29" selection-start-line="981" selection-start-column="29" selection-end-line="981" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#420#12185#0" />
+            <element signature="e#12206#17042#0" />
+            <element signature="e#17063#24381#0" />
+          </folding>
         </state>
       </provider>
     </entry>
