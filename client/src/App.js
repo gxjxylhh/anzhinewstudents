@@ -835,7 +835,7 @@ class App extends Component {
             phonenumber: '',
             searchname: '',
             majorname: '',
-            uniname: 'uts',
+            uniname: 'usyd',
             course1: '',
             course2: '',
             course3: '',
@@ -899,9 +899,7 @@ class App extends Component {
                     //element can be obatined through res[0].elementname
                     //since res is represented as array there
                     if (res.length === 0) {
-                        alert("only lowercase will be accepted eg: usyd, unsw, uts" +
-                            "\n\nps: please first delete and re-enter the university name"+
-                            "\nthen press the Load button again "+
+                        alert("Please check your words' spelling, upper or lower case"+
                             "\n\n if the issue persists, ignore this" +
                             "\nand manually input your info please");
 
@@ -918,7 +916,7 @@ class App extends Component {
                         //courselist = res[i].course;
                         courselist = courselist.concat(res[i].course);
                         console.log(courselist + "course list is ~~~");
-                        if(i+1 == res.length) alert("courses has been loaded~"+"enjoy with auto-completion feature~");
+                        if(i+1 == res.length) alert("courses has been loaded~"+"enjoy with auto-completion helper feature~");
 
                     }
 
@@ -932,8 +930,8 @@ class App extends Component {
                 }
             )
         this.setState({majorname : event.target.majorname.value});
-        console.log("major name actually !!!!"+this.state.majorname);
-        console.log("uni name actually!!!"+this.state.uniname);
+        //console.log("major name actually !!!!"+this.state.majorname);
+        //console.log("uni name actually!!!"+this.state.uniname);
     };
 
 

@@ -10,7 +10,6 @@ const path = require('path');
 var app = express();
 const cors = require('cors');
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -37,21 +36,6 @@ app.use(express.static(path.join(__dirname, 'client/build')))
 
 const PORT = process.env.PORT || 5000;
 
-//helperfunction to change databse entry
-
-function helperfunc(){
-    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true}, (error, client) => {
-        if (error) {
-            throw error;
-        }
-
-        database = client.db(DATABASE_NAME);
-        collection = database.collection(tempCollectionName);
-        console.log("Connected to " + DATABASE_NAME);
-        //console.log("Connected to `"+collection);
-    });
-
-};
 
 app.listen(PORT, () => {
     //helperfunc();

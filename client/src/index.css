@@ -7,7 +7,21 @@ body {
     font-size: 30px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(-45deg, #eeecce, #ddbee7, #96aed5, #89d5d4);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
 
+}
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 .button {
     background-color: lightsteelblue;
@@ -117,4 +131,11 @@ code {
     background: #ffffff;
     border-radius: 15px;
     border: 1px solid #cfcece;
+}
+
+input {
+    border-style: solid;
+    border-color: dimgrey;
+    border-width: 1px;
+    background-color: white;
 }

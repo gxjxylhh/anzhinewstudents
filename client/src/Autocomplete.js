@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 export class Autocomplete extends Component {
     static propTypes = {
         suggestions: PropTypes.instanceOf(Array)
@@ -119,7 +118,7 @@ export class Autocomplete extends Component {
                 <input
                     type="search"
                     name="majorname"
-                    size = '35'
+                    size = '32'
                     onChange={onChange}
                     onKeyDown={onKeyDown}
                     value={userInput}
