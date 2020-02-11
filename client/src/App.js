@@ -835,7 +835,7 @@ class App extends Component {
             phonenumber: '',
             searchname: '',
             majorname: '',
-            uniname: '',
+            uniname: 'uts',
             course1: '',
             course2: '',
             course3: '',
@@ -844,9 +844,30 @@ class App extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.axiosPostData = this.axiosPostData.bind(this);
         this.fetchGetData = this.fetchGetData.bind(this);
+        //this.fetchUni = this.fetchUni.bind(this);
 
-        /*
-        //maybe can be used if intialised uniname at the first stage
+        //maybe can be used if  uniname initialized at the first stage
+        if (this.state.uniname === "uts") majorforsearch = utsmajors
+        else if (this.state.uniname === "usyd") majorforsearch = usydmajors
+        else if (this.state.uniname === "unsw") majorforsearch = unswmajors
+        else console.log("input error");
+
+    }
+
+/*
+    componentDidMount() {
+        this.fetchUni();
+    }*/
+/*
+    fetchUni = async event=>{
+        console.log("still at frontkend");
+        const text = event.target.uniname.value;
+        const response = await fetch(`http://localhost:5000/api/uni/${text}`);
+        const returned = await response.json();
+        console.log("still at fkend");
+        console.log(returned.toString());
+        const uniname2 = returned;
+        this.setState(this.state.uniname = uniname2);
 
         if (this.state.uniname === "uts") {
             majorforsearch = utsmajors;
@@ -857,40 +878,21 @@ class App extends Component {
         } else {
             console.log("input error");
         }
-        */
-
     }
-
-
+    */
     //Used to find specific value according to users' input
-    fetchGetData = (event) => {
+    fetchGetData = async event => {
 
         event.preventDefault();
         //Also Note that majorname as a selected result that sent from auto complete
         //can not be saved into state of App somehow
-        //192.168.1.104 as localhost address
-        //change database entry
-        //------------------------------------
-        //process.env directs to localhost:3000 automatically
-        //------------------------------------
-
-        fetch("/uni/" + this.state.uniname)
-
-        if (this.state.uniname === "uts") {
-            majorforsearch = utsmajors;
-        } else if (this.state.uniname === "usyd") {
-            majorforsearch = usydmajors;
-        } else if (this.state.uniname === "unsw") {
-            majorforsearch = unswmajors;
-        } else {
-            console.log("input error");
-        }
+        //fetch("/api/uni/" + this.state.uniname)
         //change collection(major) entry
         //------------------------------------
         //process.env directs to localhost:3000 automatically
         //------------------------------------
-
-        fetch("/search/" + event.target.majorname.value)
+        //this.fetchUni();
+        fetch("http://localhost:5000/api/search/" + event.target.majorname.value)
             .then(res => res.json())
             .then(
                 (res) => {
@@ -911,13 +913,15 @@ class App extends Component {
                         //dont wanna alert jump out too many times :D
                         //show courses
                         //alert(res[i].course);// but this can be used for testing ~
-                        alert("courses has been loaded~"+"enjoy with auto-completion feature~");
                         //normally there should be only 1 array returned that has multiple elements inside
                         //console.log("courses are:" + res[i].course);
                         //courselist = res[i].course;
                         courselist = courselist.concat(res[i].course);
-                        //console.log(courselist + "course list is ~~~");
+                        console.log(courselist + "course list is ~~~");
+                        if(i+1 == res.length) alert("courses has been loaded~"+"enjoy with auto-completion feature~");
+
                     }
+
                 },
                 // Note: it's important to handle errors here
                 (error) => {
@@ -929,6 +933,7 @@ class App extends Component {
             )
         this.setState({majorname : event.target.majorname.value});
         console.log("major name actually !!!!"+this.state.majorname);
+        console.log("uni name actually!!!"+this.state.uniname);
     };
 
 
@@ -936,7 +941,7 @@ class App extends Component {
         //  event.preventDefault(); is used to prevent frontend real actions
         //  (in this case :to refresh itself automatically when changes are made)
         event.preventDefault();
-        axios.post('/submitinfo', {
+        axios.post('http://localhost:5000/api/submitinfo', {
             studentname: this.state.studentname,
             phonenumber: this.state.phonenumber,
             uniname: this.state.uniname,

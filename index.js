@@ -8,6 +8,8 @@ const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/tes
 //const csv = require('csvtojson');
 const path = require('path');
 var app = express();
+const cors = require('cors');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -16,7 +18,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var database, collection;
 //default database name and collection name
 //remember to change when needed
-var DATABASE_NAME = "";
+var DATABASE_NAME = "uts";
 var tempCollectionName = "courses";
 
 app.use((request, res, next) => {
@@ -28,23 +30,11 @@ app.use((request, res, next) => {
 });
 
 // Serve static files from the React frontend app
+
 app.use(express.static(path.join(__dirname, 'client/build')))
 // Anything that doesn't match the above, send back index.html
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/build/index.html'))
-})
 
-/*
-app.use(express.static(path.join(__dirname, 'client/public')));
-app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/client/public/index.html'));
-});
-*/
 
-/*
-app.use(express.static(path.join('/Users/Richrad/Documents/anzhinewstudents/client/public','build')));
-app.get('/*',(req,res)=>{res.sendFile(path.join('/Users/Richrad/Documents/anzhinewstudents/client/public','build','/index.html'))});
-*/
 const PORT = process.env.PORT || 5000;
 
 //helperfunction to change databse entry
@@ -76,25 +66,21 @@ app.listen(PORT, () => {
         //console.log("Connected to `"+collection);
     });
 });
+//not using anymore
+/*
+app.get("/api/uni/:q1/", cors(), async (req, res, next) => {
+    try{
+        //const text = req.params.;
 
-app.get("/uni/:q1/", (request, response) => {
-    let url = require('url');
-    //let url_parts =url.parse(request.url, true).pathname ;
-    //let pathnamestring = url_parts.pathname;
-    let keywords = String(url.parse(request.url, true).pathname);
-    keywords = keywords.replace("/uni/", '');
-    keywords = keywords.replace("%20", ' ');
-    keywords.toLowerCase();
-    console.log("uni keyword is : " + keywords);
-    DATABASE_NAME = keywords;
-    tempCollectionName = "courses";
-    //helperfunc();
-    //response.send(keywords);
-    //MongoClient.close();
-    helperfunc();
+        //console.log(text+"oho`~~~~");
 
+    }catch (err) {
+        next(err)
+
+    }
+    console.log("in backend ~~~oho`~~~~");
 });
-
+*/
 //-------------
 
 //this is used to find records that satisfy certain conditions as example
@@ -112,7 +98,7 @@ app.get("/accounts/id371138", (request, response) => {
 
 //single insert
 
-app.post("/submitinfo", (request, response) => {
+app.post("/api/submitinfo", (request, response) => {
     DATABASE_NAME = "Students";
     tempCollectionName = "info";
     //data from frontend
@@ -164,11 +150,12 @@ app.post('/insertmany', (request, response) => {
 });
 */
 
-app.get("/search/:q1/", (request, response) => {
+app.get("/api/search/:q1/", (request, response) => {
     let url = require('url');
     //let url_parts =url.parse(request.url, true).pathname ;
     //let pathnamestring = url_parts.pathname;
     let keywords = String(url.parse(request.url, true).pathname);
+    keywords = keywords.replace("/api",'');
     keywords = keywords.replace("/search/", '');
     keywords = keywords.replace("%20", ' ');
     console.log("searching keyword is : " + keywords);
@@ -184,7 +171,7 @@ app.get("/search/:q1/", (request, response) => {
     });
 });
 
-//This is used to find all records that satisfy no certain conditions
+//This is used to find all records that satisfy no certain conditions, should never be called, except for testing
 //app.get("/watch/:q1/:q2", (request, response) => {
 
 app.get("/search/", (request, response) => {
@@ -220,3 +207,9 @@ app.get("/search/:qname", (request, response) => {
 });
 
  */
+
+// Anything that doesn't match the above, send back the index.html file
+//Note: this has be at the bottom
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})

@@ -57,6 +57,8 @@ label:hover{
     color: #321f34;
 }
 li {
+    list-style-type: none;
+    size : 20px;
     cursor: pointer;
 }
 li:hover {
