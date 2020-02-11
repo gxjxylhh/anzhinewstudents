@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 var database, collection;
 //default database name and collection name
 //remember to change when needed
-var DATABASE_NAME = "uts";
+var DATABASE_NAME = "usyd";
 var tempCollectionName = "courses";
 
 app.use((request, res, next) => {
