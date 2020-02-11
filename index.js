@@ -6,7 +6,7 @@ const MongoClient = require("mongodb").MongoClient;
 const bodyParser = require('body-parser');
 const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority";
 //const csv = require('csvtojson');
-//const path = require('path');
+const path = require('path');
 var app = express();
 
 app.use(bodyParser.json());
@@ -27,7 +27,24 @@ app.use((request, res, next) => {
 
 });
 
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, 'client/build')))
+// Anything that doesn't match the above, send back index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'))
+})
 
+/*
+app.use(express.static(path.join(__dirname, 'client/public')));
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/client/public/index.html'));
+});
+*/
+
+/*
+app.use(express.static(path.join('/Users/Richrad/Documents/anzhinewstudents/client/public','build')));
+app.get('/*',(req,res)=>{res.sendFile(path.join('/Users/Richrad/Documents/anzhinewstudents/client/public','build','/index.html'))});
+*/
 const PORT = process.env.PORT || 5000;
 
 //helperfunction to change databse entry

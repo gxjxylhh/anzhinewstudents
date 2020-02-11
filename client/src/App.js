@@ -874,7 +874,7 @@ class App extends Component {
         //process.env directs to localhost:3000 automatically
         //------------------------------------
 
-        fetch("http://192.168.1.104:5000/uni/" + this.state.uniname)
+        fetch("/uni/" + this.state.uniname)
 
         if (this.state.uniname === "uts") {
             majorforsearch = utsmajors;
@@ -890,7 +890,7 @@ class App extends Component {
         //process.env directs to localhost:3000 automatically
         //------------------------------------
 
-        fetch("http://192.168.1.104:5000/search/" + event.target.majorname.value)
+        fetch("/search/" + event.target.majorname.value)
             .then(res => res.json())
             .then(
                 (res) => {
@@ -936,7 +936,7 @@ class App extends Component {
         //  event.preventDefault(); is used to prevent frontend real actions
         //  (in this case :to refresh itself automatically when changes are made)
         event.preventDefault();
-        axios.post('http://192.168.1.104:5000/submitinfo', {
+        axios.post('/submitinfo', {
             studentname: this.state.studentname,
             phonenumber: this.state.phonenumber,
             uniname: this.state.uniname,
