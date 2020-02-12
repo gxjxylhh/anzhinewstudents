@@ -904,6 +904,7 @@ class App extends Component {
                             "\nand manually input your info please");
 
                     } else {
+                        //check returned result courses length as arrary
                         console.log("course array length is" + res.length);
 
                     }
@@ -914,7 +915,9 @@ class App extends Component {
                         //normally there should be only 1 array returned that has multiple elements inside
                         //console.log("courses are:" + res[i].course);
                         //courselist = res[i].course;
-                        courselist = courselist.concat(res[i].course);
+                        if(typeof res[i].course !== 'undefined' && res[i].course !== null){
+                            courselist = courselist.concat(res[i].course);
+                        }
                         console.log(courselist + "course list is ~~~");
                         if(i+1 == res.length) alert("courses has been loaded~"+"enjoy with auto-completion helper feature~");
 
