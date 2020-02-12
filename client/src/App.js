@@ -892,7 +892,7 @@ class App extends Component {
         //process.env directs to localhost:3000 automatically
         //------------------------------------
         //this.fetchUni();
-        fetch("http://anzhinewstudents.herokuapp.com/api/search/" + event.target.majorname.value)
+        fetch("https://anzhinewstudents.herokuapp.com/api/search/" + event.target.majorname.value)
             .then(res => res.json())
             .then(
                 (res) => {
