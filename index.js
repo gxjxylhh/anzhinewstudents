@@ -195,6 +195,7 @@ app.get("/search/:qname", (request, response) => {
 
 // Anything that doesn't match the above, send back the index.html file
 //Note: this has be at the bottom
+//...
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'))
