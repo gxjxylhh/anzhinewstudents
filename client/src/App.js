@@ -10,7 +10,7 @@ import AutocompleteC3 from "./AutocompleteC3";
 import AutocompleteC4 from "./AutocompleteC4";
 
 
-const utsmajors = ["Aboriginal Studies and Languages Literacy and Numeracy",
+var utsmajors = ["Aboriginal Studies and Languages Literacy and Numeracy",
     "Aboriginal Studies and Languages Literacy and Numeracy",
     "Accounting",
     "Acute Care",
@@ -430,7 +430,7 @@ const utsmajors = ["Aboriginal Studies and Languages Literacy and Numeracy",
     "Water Engineering",
     "Water Engineering",
     "Writing and Cultural Studies"];
-const unswmajors = ["ACCT: Accounting",
+var unswmajors = ["ACCT: Accounting",
     "ACTL: Actuarial Studies",
     "ADAD: Art and Design",
     "AERO: Aerospace Engineering",
@@ -576,10 +576,9 @@ const unswmajors = ["ACCT: Accounting",
     "ZHSS: Humanities & Social Sciences",
     "ZINT: University College (Interdisciplinary)",
     "ZPEM: Physical Environmental & Mathematical Sciences"];
-const usydmajors = ["Accounting",
+var usydmajors = ["Accounting",
     "American Studies",
     "Anatomy and Histology (for Medical Science)",
-    "Anatomy and Histology",
     "Anatomy and Histology",
     "Ancient Greek",
     "Ancient History",
@@ -589,7 +588,6 @@ const usydmajors = ["Accounting",
     "Animal Production",
     "Anthropology",
     "Asian Studies",
-    "Applied Medical Science",
     "Applied Medical Science",
     "Arabic Language and Cultures (Intermediate)",
     "Arabic Language and Cultures (Advanced)",
@@ -850,6 +848,7 @@ class App extends Component {
         this.axiosPostData = this.axiosPostData.bind(this);
         this.fetchGetData = this.fetchGetData.bind(this);
         this.handlesSelectChange = this.handlesSelectChange.bind(this);
+        this.uniq = this.uniq.bind(this);
         //this.fetchUni = this.fetchUni.bind(this);
 
     }
@@ -978,13 +977,25 @@ class App extends Component {
         console.log("oho"+this.state.selectValue);
 
     }
-
+    uniq(a) {
+        return a.sort().filter(function(item, pos, ary) {
+            return !pos || item !== ary[pos - 1];
+        });
+    }
     handlesSelectChange(event){
         this.setState({selectValue:event.target.value});
         this.setState({uniname:event.target.value});
+        utsmajors = this.uniq(utsmajors);
+        usydmajors = this.uniq(usydmajors);
+        unswmajors = this.uniq(unswmajors);
 
     }
+
+
+
     render() {
+
+
         let header = '';
 
         return (

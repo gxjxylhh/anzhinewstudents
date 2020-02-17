@@ -17,6 +17,7 @@ export class Autocomplete extends Component {
             showSuggestions: false,
             userInput: ""
         };
+        this.onChange = this.onChange.bind(this);
     }
 
     onChange = e => {
@@ -25,16 +26,19 @@ export class Autocomplete extends Component {
         const userInput = e.currentTarget.value;
 
         const filteredSuggestions = suggestions.filter(
-            suggestion =>
-                suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+            (suggestion) => {
+            return suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1;
+            }
         );
 
+        console.log("userinput"+userInput);console.log("suggestion"+filteredSuggestions);
         this.setState({
             activeSuggestion: 0,
             filteredSuggestions,
             showSuggestions: true,
             userInput: e.currentTarget.value
         });
+        this.forceUpdate();
     };
 
     onClick = e => {
@@ -71,6 +75,9 @@ export class Autocomplete extends Component {
         }
     };
 
+
+
+
     render() {
         const {
             onChange,
@@ -86,17 +93,24 @@ export class Autocomplete extends Component {
         let suggestionsListComponent;
         if (showSuggestions && userInput) {
             if (filteredSuggestions.length) {
+                console.log(filteredSuggestions+"wfalsdkll;k;lk~~~~~~");
                 suggestionsListComponent = (
-                    <ul className="suggestions">
+                    <ul className="suggestion">
                         {filteredSuggestions.map((suggestion, index) => {
                             let className;
 
                             if (index === activeSuggestion) {
                                 className = "";
                                 //console.log(this.state.userInput+"   hooo ya");
+                            }else{
+                                console.log("hooya");
+                                console.log("suggestion inside"+suggestion);
+                                console.log("wot inside"+filteredSuggestions);
+
                             }
 
                             return (
+
                                 <li key={suggestion} onClick={onClick}>
                                     {suggestion}
                                 </li>
