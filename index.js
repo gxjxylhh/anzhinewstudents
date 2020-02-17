@@ -105,6 +105,8 @@ app.post("/api/submitinfo", (request, response) => {
 
     });
 
+    MongoClient.close();
+
 });
 
 
@@ -175,7 +177,7 @@ app.get("/api/search/:q1/", (request, response) => {
         });
     });
 
-
+    //MongoClient.close();
 
 });
 
