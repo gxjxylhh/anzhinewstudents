@@ -822,6 +822,9 @@ const usydmajors = ["Accounting",
     "Voice"];
 
 
+
+
+
 const axios = require('axios');
 
 var majorforsearch = [];
@@ -831,28 +834,27 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            year:'',
             studentname: '',
             phonenumber: '',
             searchname: '',
             majorname: '',
-            uniname: 'usyd',
+            uniname: '',
             course1: '',
             course2: '',
             course3: '',
             course4: '',
+            selectValue:'',
         };
         this.handleChange = this.handleChange.bind(this);
         this.axiosPostData = this.axiosPostData.bind(this);
         this.fetchGetData = this.fetchGetData.bind(this);
+        this.handlesSelectChange = this.handlesSelectChange.bind(this);
         //this.fetchUni = this.fetchUni.bind(this);
 
-        //maybe can be used if  uniname initialized at the first stage
-        if (this.state.uniname === "uts") majorforsearch = utsmajors
-        else if (this.state.uniname === "usyd") majorforsearch = usydmajors
-        else if (this.state.uniname === "unsw") majorforsearch = unswmajors
-        else console.log("input error");
-
     }
+
+
 
 /*
     componentDidMount() {
@@ -892,7 +894,8 @@ class App extends Component {
         //process.env directs to localhost:3000 automatically
         //------------------------------------
         //this.fetchUni();
-        fetch("https://anzhinewstudents.herokuapp.com/api/search/" + event.target.majorname.value)
+        //https://anzhinewstudents.herokuapp.com/api/search/
+        fetch("https://anzhinewstudents.herokuapp.com/api/search/"+this.state.uniname +event.target.majorname.value)
             .then(res => res.json())
             .then(
                 (res) => {
@@ -946,6 +949,7 @@ class App extends Component {
             studentname: this.state.studentname,
             phonenumber: this.state.phonenumber,
             uniname: this.state.uniname,
+            year: this.state.year,
             majorname: this.state.majorname,
             course1: event.target.course1.value,
             course2: event.target.course2.value,
@@ -966,21 +970,45 @@ class App extends Component {
         //prevent may not needed?
         //event.preventDefault();
         this.setState({[event.target.name]: event.target.value});
+        //maybe can be used if  uniname initialized at the first stage
+        if (this.state.selectValue === "uts") majorforsearch = utsmajors
+        else if (this.state.selectValue === "usyd") majorforsearch = usydmajors
+        else if (this.state.selectValue === "unsw") majorforsearch = unswmajors
+        else console.log("input error");
+        console.log("oho"+this.state.selectValue);
+
     }
 
+    handlesSelectChange(event){
+        this.setState({selectValue:event.target.value});
+        this.setState({uniname:event.target.value});
+
+    }
     render() {
         let header = '';
 
         return (
             <div className="App">
+                <select
+                    defaultValue=""
+                    value={this.state.selectValue}
+                    onChange={this.handlesSelectChange}
+                >
+                    <option value="">Please select uni</option>
+                    <option value="usyd">USYD</option>
+                    <option value="uts">UTS</option>
+                    <option value="unsw">UNSW</option>
+                </select>
+
+
                 <form onSubmit={this.fetchGetData}>
-                    <label>university name :</label>
+                    <label>In uni for how many years :</label>
                     <br></br>
                     <input
-                        type='text'
-                        name='uniname'
+                        type='int'
+                        name='year'
                         size = '35'
-                        value={this.state.uniname}
+                        value={this.state.year}
                         onChange={this.handleChange}
                     />
                     <br></br>

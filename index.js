@@ -143,17 +143,40 @@ app.get("/api/search/:q1/", (request, response) => {
     keywords = keywords.replace("/api",'');
     keywords = keywords.replace("/search/", '');
     keywords = keywords.replace("%20", ' ');
+    //if matches usyd
+    if(keywords.match(/usyd.*/)){DATABASE_NAME = "usyd"; keywords = keywords.replace("usyd",'');}
+    //for uts
+    else if(keywords.match(/uts.*/)){DATABASE_NAME = "uts"; keywords = keywords.replace("uts",'');}
+    //for unsw
+    else if(keywords.match(/unsw.*/)){DATABASE_NAME = "unsw"; keywords = keywords.replace("unsw",'');}
+    keywords = keywords.replace("%20", ' ');
+
+
     console.log("searching keyword is : " + keywords);
     //Drives me nuts here,direct casting does not let you do comparison inside find()!
     //However when re-initialisation, with searchQuery it works!
     var searchQuery = {major: keywords};
-    collection.find(searchQuery).toArray((error, result) => {
-        //console.log(query+"this is key words");
+    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true}, (error, client) => {
         if (error) {
-            return response.status(500).send(error);
+            throw error;
         }
-        response.send(result);
+
+        database = client.db(DATABASE_NAME);
+        collection = database.collection(tempCollectionName);
+        console.log("Connected to " + DATABASE_NAME);
+        //console.log("Connected to `"+collection);
+
+        collection.find(searchQuery).toArray((error, result) => {
+            //console.log(query+"this is key words");
+            if (error) {
+                return response.status(500).send(error);
+            }
+            response.send(result);
+        });
     });
+
+
+
 });
 
 //This is used to find all records that satisfy no certain conditions, should never be called, except for testing
@@ -195,7 +218,6 @@ app.get("/search/:qname", (request, response) => {
 
 // Anything that doesn't match the above, send back the index.html file
 //Note: this has be at the bottom
-//...
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'))
