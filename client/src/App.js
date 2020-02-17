@@ -921,7 +921,7 @@ class App extends Component {
                             courselist = courselist.concat(res[i].course);
                         }
                         console.log(courselist + "course list is ~~~");
-                        if(i+1 == res.length) alert("courses has been loaded~"+"enjoy with auto-completion helper feature~");
+                        if(i+1 === res.length) alert("courses has been loaded~"+"enjoy with auto-completion helper feature~");
 
                     }
 

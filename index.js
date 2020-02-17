@@ -40,7 +40,7 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     //helperfunc();
-    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true}, (error, client) => {
+    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true,useUnifiedTopology: true}, (error, client) => {
         if (error) {
             throw error;
         }
@@ -88,7 +88,7 @@ app.post("/api/submitinfo", (request, response) => {
     tempCollectionName = "info";
     //data from frontend
     console.log(request.body);
-    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true}, (error, client) => {
+    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true,useUnifiedTopology: true}, (error, client) => {
         if (error) {
             throw error;
         }
@@ -105,7 +105,7 @@ app.post("/api/submitinfo", (request, response) => {
 
     });
 
-    MongoClient.close();
+    // MongoClient.close();
 
 });
 
@@ -158,7 +158,7 @@ app.get("/api/search/:q1/", (request, response) => {
     //Drives me nuts here,direct casting does not let you do comparison inside find()!
     //However when re-initialisation, with searchQuery it works!
     var searchQuery = {major: keywords};
-    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true}, (error, client) => {
+    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true,useUnifiedTopology: true}, (error, client) => {
         if (error) {
             throw error;
         }
