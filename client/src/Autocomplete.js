@@ -26,7 +26,7 @@ export class Autocomplete extends Component {
 
         const filteredSuggestions = suggestions.filter(
             suggestion =>
-                suggestion.indexOf(userInput) > -1
+                suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
         );
 
         this.setState({
