@@ -3,18 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="513b127a-6aac-4516-a37b-a85533bcbe18" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/Autocomplete.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/Autocomplete.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/AutocompleteC1.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/AutocompleteC1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/AutocompleteC2.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/AutocompleteC2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/AutocompleteC3.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/AutocompleteC3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/AutocompleteC4.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/AutocompleteC4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/csstype/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/csstype/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/csstype/index.js.flow" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/csstype/index.js.flow" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/csstype/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/csstype/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/react-select/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/react-select/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/asset-manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/precache-manifest.cb587d85a32361303b1c1de76cce6780.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/service-worker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/css/main.f1b7bc53.chunk.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/css/main.f1b7bc53.chunk.css.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/2.b1656cce.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/2.b1656cce.chunk.js.LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/2.b1656cce.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/main.5d91dbb4.chunk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/main.5d91dbb4.chunk.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/runtime-main.cea588d5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/build/static/js/runtime-main.cea588d5.js.map" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -30,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="914" column="69" lean-forward="true" selection-start-line="914" selection-start-column="69" selection-end-line="914" selection-end-column="69" />
+            <state relative-caret-position="182">
+              <caret line="907" selection-start-line="907" selection-end-line="907" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#420#12185#0" />
@@ -83,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="184" column="17" selection-start-line="184" selection-start-column="17" selection-end-line="184" selection-end-column="17" />
+            <state relative-caret-position="380">
+              <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
             </state>
           </provider>
         </entry>
@@ -325,7 +326,7 @@
       <workItem from="1581765981791" duration="225000" />
       <workItem from="1581845683288" duration="76000" />
       <workItem from="1581847253955" duration="41000" />
-      <workItem from="1581894356005" duration="8579000" />
+      <workItem from="1581894356005" duration="9005000" />
     </task>
     <task id="LOCAL-00001" summary="Revert &quot;.&quot;&#10;&#10;This reverts commit 9e05c4f2">
       <created>1581343160583</created>
@@ -338,7 +339,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51590000" />
+    <option name="totallyTimeSpent" value="52016000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="826" extended-state="0" />
@@ -565,17 +566,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="184" column="17" selection-start-line="184" selection-start-column="17" selection-end-line="184" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="914" column="69" lean-forward="true" selection-start-line="914" selection-start-column="69" selection-end-line="914" selection-end-column="69" />
+        <state relative-caret-position="182">
+          <caret line="907" selection-start-line="907" selection-end-line="907" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#420#12185#0" />
@@ -584,6 +578,13 @@
             <element signature="e#25450#26222#0" />
             <element signature="e#28974#29941#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
         </state>
       </provider>
     </entry>
