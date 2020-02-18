@@ -7,72 +7,7 @@ body {
     font-size: 30px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(-45deg, #eeecce, #ddbee7, #96aed5, #89d5d4);
-    background-size: 400% 400%;
-    animation: gradient 20s ease infinite;
-
-}
-/*iphone11*/
-
-@media only screen
-and (device-width: 414px)
-and (device-height: 896px)
-and (-webkit-device-pixel-ratio: 2) {
-    body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-        font-size: 30px;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        background: #89d5d4;
-
-
-    }
-
-}
-/* iphone 11 pro*/
-/* 2436x1125px at 458ppi */
-@media only screen
-and (device-width: 375px)
-and (device-height: 812px)
-and (-webkit-device-pixel-ratio: 3) {
-    body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-        font-size: 30px;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        background: #89d5d4;
-
-
-    }
-
-
-}
-
-
-/*iphone11 max pro*/
-/* 2688x1242px at 458ppi */
-@media only screen
-and (device-width: 414px)
-and (device-height: 896px)
-and (-webkit-device-pixel-ratio: 3) {
-    body {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-        font-size: 30px;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        background: #89d5d4;
-
-
-    }
+    background: #89d5d4;
 
 }
 
@@ -80,17 +15,11 @@ and (-webkit-device-pixel-ratio: 3) {
 
 
 
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
+
+
+
+
+
 .button {
     background-color: lightsteelblue;
     border: none;
