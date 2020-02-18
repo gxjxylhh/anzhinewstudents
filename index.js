@@ -40,7 +40,7 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
     //helperfunc();
-    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true,useUnifiedTopology: true}, (error, client) => {
+    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
         if (error) {
             throw error;
         }
@@ -48,7 +48,7 @@ app.listen(PORT, () => {
         database = client.db(DATABASE_NAME);
         collection = database.collection(tempCollectionName);
         console.log("Initial Connected to " + DATABASE_NAME);
-        console.log("Initial Connected to " +tempCollectionName);
+        console.log("Initial Connected to " + tempCollectionName);
         //console.log("Connected to `"+collection);
     });
 });
@@ -89,14 +89,14 @@ app.post("/api/submitinfo", (request, response) => {
     tempCollectionName = "info";
     //data from frontend
     console.log(request.body);
-    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true,useUnifiedTopology: true}, (error, client) => {
+    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
         if (error) {
             throw error;
         }
         database = client.db(DATABASE_NAME);
         collection = database.collection(tempCollectionName);
         console.log("post Connected to " + DATABASE_NAME);
-        console.log("post Connected to " +tempCollectionName);        //console.log("Connected to `"+collection);
+        console.log("post Connected to " + tempCollectionName);        //console.log("Connected to `"+collection);
         collection.insertOne(request.body, (error, result) => {
             if (error) {
                 return response.status(500).send(error);
@@ -145,15 +145,27 @@ app.get("/api/search/:q1/", (request, response) => {
     //let url_parts =url.parse(request.url, true).pathname ;
     //let pathnamestring = url_parts.pathname;
     let keywords = String(url.parse(request.url, true).pathname);
-    keywords = keywords.replace("/api",'');
+    keywords = keywords.replace("/api", '');
     keywords = keywords.replace("/search/", '');
     keywords = keywords.replace("%20", ' ');
     //if matches usyd
-    if(keywords.match(/usyd.*/)){DATABASE_NAME = "usyd"; keywords = keywords.replace("usyd",'');console.log("matching usyd");}
+    if (keywords.match(/usyd.*/)) {
+        DATABASE_NAME = "usyd";
+        keywords = keywords.replace("usyd", '');
+        console.log("matching usyd");
+    }
     //for uts
-    else if(keywords.match(/uts.*/)){DATABASE_NAME = "uts"; keywords = keywords.replace("uts",'');console.log("matching uts");}
+    else if (keywords.match(/uts.*/)) {
+        DATABASE_NAME = "uts";
+        keywords = keywords.replace("uts", '');
+        console.log("matching uts");
+    }
     //for unsw
-    else if(keywords.match(/unsw.*/)){DATABASE_NAME = "unsw"; keywords = keywords.replace("unsw",'');console.log("matching unsw");}
+    else if (keywords.match(/unsw.*/)) {
+        DATABASE_NAME = "unsw";
+        keywords = keywords.replace("unsw", '');
+        console.log("matching unsw");
+    }
     keywords = keywords.replace("%20", ' ');
 
 
@@ -161,7 +173,7 @@ app.get("/api/search/:q1/", (request, response) => {
     //Drives me nuts here,direct casting does not let you do comparison inside find()!
     //However when re-initialisation, with searchQuery it works!
     var searchQuery = {major: keywords};
-    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true,useUnifiedTopology: true}, (error, client) => {
+    MongoClient.connect(CONNECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true}, (error, client) => {
         if (error) {
             throw error;
         }
@@ -169,7 +181,7 @@ app.get("/api/search/:q1/", (request, response) => {
         database = client.db(DATABASE_NAME);
         collection = database.collection(tempCollectionName);
         console.log(" Connected to " + DATABASE_NAME);
-        console.log(" Connected to " +tempCollectionName);
+        console.log(" Connected to " + tempCollectionName);
 
         collection.find(searchQuery).toArray((error, result) => {
             //console.log(query+"this is key words");
