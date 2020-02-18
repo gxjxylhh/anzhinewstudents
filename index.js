@@ -47,7 +47,8 @@ app.listen(PORT, () => {
 
         database = client.db(DATABASE_NAME);
         collection = database.collection(tempCollectionName);
-        console.log("Connected to " + DATABASE_NAME);
+        console.log("Initial Connected to " + DATABASE_NAME);
+        console.log("Initial Connected to " +tempCollectionName);
         //console.log("Connected to `"+collection);
     });
 });
@@ -94,8 +95,8 @@ app.post("/api/submitinfo", (request, response) => {
         }
         database = client.db(DATABASE_NAME);
         collection = database.collection(tempCollectionName);
-        console.log("Connected to " + DATABASE_NAME);
-        //console.log("Connected to `"+collection);
+        console.log("post Connected to " + DATABASE_NAME);
+        console.log("post Connected to " +tempCollectionName);        //console.log("Connected to `"+collection);
         collection.insertOne(request.body, (error, result) => {
             if (error) {
                 return response.status(500).send(error);
@@ -138,6 +139,8 @@ app.post('/insertmany', (request, response) => {
 */
 
 app.get("/api/search/:q1/", (request, response) => {
+    //set back to courses entry
+    tempCollectionName = "courses";
     let url = require('url');
     //let url_parts =url.parse(request.url, true).pathname ;
     //let pathnamestring = url_parts.pathname;
@@ -146,11 +149,11 @@ app.get("/api/search/:q1/", (request, response) => {
     keywords = keywords.replace("/search/", '');
     keywords = keywords.replace("%20", ' ');
     //if matches usyd
-    if(keywords.match(/usyd.*/)){DATABASE_NAME = "usyd"; keywords = keywords.replace("usyd",'');}
+    if(keywords.match(/usyd.*/)){DATABASE_NAME = "usyd"; keywords = keywords.replace("usyd",'');console.log("matching usyd");}
     //for uts
-    else if(keywords.match(/uts.*/)){DATABASE_NAME = "uts"; keywords = keywords.replace("uts",'');}
+    else if(keywords.match(/uts.*/)){DATABASE_NAME = "uts"; keywords = keywords.replace("uts",'');console.log("matching uts");}
     //for unsw
-    else if(keywords.match(/unsw.*/)){DATABASE_NAME = "unsw"; keywords = keywords.replace("unsw",'');}
+    else if(keywords.match(/unsw.*/)){DATABASE_NAME = "unsw"; keywords = keywords.replace("unsw",'');console.log("matching unsw");}
     keywords = keywords.replace("%20", ' ');
 
 
@@ -165,8 +168,8 @@ app.get("/api/search/:q1/", (request, response) => {
 
         database = client.db(DATABASE_NAME);
         collection = database.collection(tempCollectionName);
-        console.log("Connected to " + DATABASE_NAME);
-        //console.log("Connected to `"+collection);
+        console.log(" Connected to " + DATABASE_NAME);
+        console.log(" Connected to " +tempCollectionName);
 
         collection.find(searchQuery).toArray((error, result) => {
             //console.log(query+"this is key words");
