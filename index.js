@@ -96,7 +96,7 @@ app.post("/api/submitinfo", (request, response) => {
         collection = database.collection(tempCollectionName);
         console.log("Connected to " + DATABASE_NAME);
         //console.log("Connected to `"+collection);
-        collection.insert(request.body, (error, result) => {
+        collection.insertOne(request.body, (error, result) => {
             if (error) {
                 return response.status(500).send(error);
             }

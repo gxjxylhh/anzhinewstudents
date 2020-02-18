@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="513b127a-6aac-4516-a37b-a85533bcbe18" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -70,8 +69,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-138">
-              <caret line="176" column="11" lean-forward="true" selection-start-line="176" selection-start-column="11" selection-end-line="176" selection-end-column="11" />
+            <state relative-caret-position="273">
+              <caret line="97" column="51" lean-forward="true" selection-start-line="97" selection-start-column="51" selection-end-line="97" selection-end-column="51" />
             </state>
           </provider>
         </entry>
@@ -160,6 +159,8 @@
       <find>suggestion</find>
       <find>showSuggestions</find>
       <find>activeSuggestion</find>
+      <find>clos</find>
+      <find>insert</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -328,7 +329,7 @@
       <workItem from="1581894356005" duration="10055000" />
       <workItem from="1581923293929" duration="5889000" />
       <workItem from="1581949766522" duration="1356000" />
-      <workItem from="1581982593558" duration="1183000" />
+      <workItem from="1581982593558" duration="1712000" />
     </task>
     <task id="LOCAL-00001" summary="Revert &quot;.&quot;&#10;&#10;This reverts commit 9e05c4f2">
       <created>1581343160583</created>
@@ -341,7 +342,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61494000" />
+    <option name="totallyTimeSpent" value="62023000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="826" extended-state="0" />
@@ -584,8 +585,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-138">
-          <caret line="176" column="11" lean-forward="true" selection-start-line="176" selection-start-column="11" selection-end-line="176" selection-end-column="11" />
+        <state relative-caret-position="273">
+          <caret line="97" column="51" lean-forward="true" selection-start-line="97" selection-start-column="51" selection-end-line="97" selection-end-column="51" />
         </state>
       </provider>
     </entry>
