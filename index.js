@@ -9,12 +9,8 @@ const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/tes
 const path = require('path');
 var app = express();
 const cors = require('cors');
-var nodemailer = require('nodemailer');
 
-var fs = require('fs');
 
-const total = 27;//this is temp value
-var ls = '';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -44,37 +40,7 @@ app.use(express.static(path.join(__dirname, 'client/build')))
 
 const PORT = process.env.PORT || 5000;
 
-function handleSendEmail(req,res) {
 
-    // Not the movie transporter!
-    var transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: 'richardguo495@gmail.com', // Your email id
-            pass: 'ad55085874'
-        }
-    });
-    var mailOptions = {
-        from: 'richardguo495@gmail.com', // sender address
-        to: '353583240@qq.com', // list of receivers
-        subject: 'Latest students info from Anzhi Edu', // Subject line
-        attachments:[{ filename: 'anzhistudentsinfo.csv', path: __dirname + '/anzhistudentsinfo.csv' }],
-        html: '<!DOCTYPE html>'+
-            '<html><head><title>学生信息</title>'+
-            '</head><body><div>'+
-            '<p>附件csv</p>'+
-            '</div></body></html>'
-    };
-    transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            console.log(error);
-            //res.json({yo: 'error'});
-        }else{
-            console.log('Message sent: ' + info.response);
-            //res.json({yo: info.response});
-        };
-    });
-}
 
 app.listen(PORT, () => {
     //helperfunc();
