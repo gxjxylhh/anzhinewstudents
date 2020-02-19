@@ -1,6 +1,6 @@
 //  index.js at root
 
-
+const {exec} = require('child_process');
 const express = require('express');
 const MongoClient = require("mongodb").MongoClient;
 const bodyParser = require('body-parser');
@@ -9,6 +9,12 @@ const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/tes
 const path = require('path');
 var app = express();
 const cors = require('cors');
+var nodemailer = require('nodemailer');
+
+var fs = require('fs');
+
+const total = 27;//this is temp value
+var ls = '';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -19,6 +25,7 @@ var database, collection;
 //remember to change when needed
 var DATABASE_NAME = "usyd";
 var tempCollectionName = "courses";
+
 
 
 app.use((request, res, next) => {
@@ -37,6 +44,37 @@ app.use(express.static(path.join(__dirname, 'client/build')))
 
 const PORT = process.env.PORT || 5000;
 
+function handleSendEmail(req,res) {
+
+    // Not the movie transporter!
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'richardguo495@gmail.com', // Your email id
+            pass: 'ad55085874'
+        }
+    });
+    var mailOptions = {
+        from: 'richardguo495@gmail.com', // sender address
+        to: '353583240@qq.com', // list of receivers
+        subject: 'Latest students info from Anzhi Edu', // Subject line
+        attachments:[{ filename: 'anzhistudentsinfo.csv', path: __dirname + '/anzhistudentsinfo.csv' }],
+        html: '<!DOCTYPE html>'+
+            '<html><head><title>学生信息</title>'+
+            '</head><body><div>'+
+            '<p>附件csv</p>'+
+            '</div></body></html>'
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            console.log(error);
+            //res.json({yo: 'error'});
+        }else{
+            console.log('Message sent: ' + info.response);
+            //res.json({yo: info.response});
+        };
+    });
+}
 
 app.listen(PORT, () => {
     //helperfunc();
@@ -51,7 +89,32 @@ app.listen(PORT, () => {
         console.log("Initial Connected to " + tempCollectionName);
         //console.log("Connected to `"+collection);
     });
+    exec("mongoexport --host AnzhiEdu-shard-0/anzhiedu-shard-00-00-cowhp.mongodb.net:27017 --ssl --username Ricky --password 12321 --authenticationDatabase admin --db Students --collection info --type csv --out anzhistudentsinfo.csv -f studentname,phonenumber,majorname,course1,course2,course3,course4", (error, stdout, stderr) => {
+
+        if (error) {
+            console.log(`error: ${error.message}`);
+            return;
+        }
+        if (stderr) {
+            console.log(`stderr: ${stderr}`);
+            return;
+        }
+        console.log(`stdout: ${stdout}`);
+    });
+    fs.readFile('./anzhistudentsinfo.csv', function (err, data) {
+        if (err) {
+            throw err;
+        }
+        console.log(data+"oho");
+    });
+    handleSendEmail();
 });
+
+
+
+
+
+
 //not using anymore
 /*
 app.get("/api/uni/:q1/", cors(), async (req, res, next) => {
@@ -101,12 +164,15 @@ app.post("/api/submitinfo", (request, response) => {
             if (error) {
                 return response.status(500).send(error);
             }
+
             response.send(result.result);
         });
 
     });
 
-    // MongoClient.close();
+
+
+
 
 });
 
