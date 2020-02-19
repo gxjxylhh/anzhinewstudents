@@ -100,12 +100,7 @@ app.listen(PORT, () => {
         }
         console.log(`stdout: ${stdout}`);
     });
-    fs.readFile('./anzhistudentsinfo.csv', function (err, data) {
-        if (err) {
-            throw err;
-        }
-        console.log(data+"oho");
-    });
+
     handleSendEmail();
 });
 
