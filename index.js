@@ -55,19 +55,7 @@ app.listen(PORT, () => {
         console.log("Initial Connected to " + tempCollectionName);
         //console.log("Connected to `"+collection);
     });
-    exec("mongoexport --host AnzhiEdu-shard-0/anzhiedu-shard-00-00-cowhp.mongodb.net:27017 --ssl --username Ricky --password 12321 --authenticationDatabase admin --db Students --collection info --type csv --out anzhistudentsinfo.csv -f studentname,phonenumber,majorname,course1,course2,course3,course4", (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        console.log(`stdout: ${stdout}`);
-    });
 
-    handleSendEmail();
 });
 
 
