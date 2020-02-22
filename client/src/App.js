@@ -935,6 +935,8 @@ class App extends Component {
                 }
             )
         this.setState({majorname : event.target.majorname.value});
+
+        courselist = this.uniq(courselist);
         //console.log("major name actually !!!!"+this.state.majorname);
         //console.log("uni name actually!!!"+this.state.uniname);
     };
