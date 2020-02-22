@@ -4,7 +4,7 @@ const {exec} = require('child_process');
 const express = require('express');
 const MongoClient = require("mongodb").MongoClient;
 const bodyParser = require('body-parser');
-const CONNECTION_URL = "mongodb+srv://Ricky:12321@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority";
+const CONNECTION_URL = "mongodb+srv://Guest:12321@anzhiedu-cowhp.mongodb.net/test?retryWrites=true&w=majority";
 //const csv = require('csvtojson');
 const path = require('path');
 var app = express();
