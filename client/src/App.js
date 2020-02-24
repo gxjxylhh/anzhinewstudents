@@ -1006,6 +1006,7 @@ class App extends Component {
                     defaultValue=""
                     value={this.state.selectValue}
                     onChange={this.handlesSelectChange}
+                    class = "selectBox"
                 >
                     <option value="">Please select uni</option>
                     <option value="usyd">USYD</option>
@@ -1015,7 +1016,7 @@ class App extends Component {
 
 
                 <form onSubmit={this.fetchGetData}>
-                    <label>In uni for how many years :</label>
+                    <label>which year in uni :</label>
                     <br></br>
                     <input
                         type='int'

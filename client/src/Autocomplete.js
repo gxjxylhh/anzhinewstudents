@@ -121,7 +121,7 @@ export class Autocomplete extends Component {
             } else {
                 suggestionsListComponent = (
                     <div className="no-suggestions">
-                        <em>please press the Load button then delete and re-enter university name</em>
+                        <em>Please check your spelling</em>
                     </div>
                 );
             }
