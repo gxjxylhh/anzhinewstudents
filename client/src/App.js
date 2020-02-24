@@ -1016,18 +1016,21 @@ class App extends Component {
 
 
                 <form onSubmit={this.fetchGetData}>
-                    <label>which year in uni :</label>
+                    <label>current uni year:</label>
                     <br></br>
+                    <p>eg:1,2,3,4</p>
                     <input
                         type='int'
                         name='year'
                         size = '35'
+
                         value={this.state.year}
                         onChange={this.handleChange}
                     />
                     <br></br>
                     <label>major name :</label>
                     <br></br>
+                    <p>eg:use auto complete </p>
                     <Autocomplete
                         menuLimit={10}
                         suggestions={majorforsearch}
@@ -1042,6 +1045,7 @@ class App extends Component {
                 <form onSubmit={this.axiosPostData}>
                     <label>student name:</label>
                     <br></br>
+                    <p>eg:Jack Wang</p>
                     <input
                         type='text'
                         name='studentname'
@@ -1052,6 +1056,7 @@ class App extends Component {
                     <br></br>
                     <label>phone number:</label>
                     <br></br>
+                    <p>eg:australian phone number</p>
                     <input
                         type='text'
                         name='phonenumber'
@@ -1062,6 +1067,7 @@ class App extends Component {
                     <br></br>
                     <label>my courses:</label>
                     <br></br>
+                    <p>eg:ACCT1000, 09100</p>
                     <AutocompleteC1
                         menuLimit={10}
                         suggestions={courselist}

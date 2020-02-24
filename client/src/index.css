@@ -46,6 +46,19 @@ h1 {
 }
 
 
+small{
+    font-size: 10px;
+    padding-bottom: 10px;
+}
+
+
+p {
+    margin-bottom: -20px;
+    margin-top: -10px;
+    font-size: 15px;
+    color: lightgoldenrodyellow;
+
+}
 .selectWrapper{
     border-radius:36px;
     display:inline-block;
@@ -180,4 +193,5 @@ input {
     -webkit-border-radius: 50px;
     -moz-border-radius: 50px;
     border-radius: 50px;
+    margin-top:10px;
 }
