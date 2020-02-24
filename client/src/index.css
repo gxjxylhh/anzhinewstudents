@@ -9,6 +9,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background: #89d5d4;
 
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
 }
 
 
