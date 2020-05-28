@@ -18,10 +18,6 @@ or run server only :npm run server
 
 or run client only :npm run client
 
-#To Do
 
-Refine logic according to feedbacks for frontend usage from users
-
-Lightweight project(by deleting some node_modules if possible)
-
-Debug 
+# Notice
+Project database has been held up due to internship ends.
